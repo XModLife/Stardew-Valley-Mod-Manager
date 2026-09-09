@@ -80,6 +80,20 @@ This avoids a partially mixed-language interface.
   <img src="docs/images/en/settings.png" alt="Language and Settings" width="94%">
 </p>
 
+## System Requirements
+
+- macOS 27.0 or later
+- Apple Silicon Mac (arm64)
+- Intel Macs are not supported by the current v1.0.0 build
+
+## Installation & Gatekeeper
+
+The current v1.0.0 GitHub build is not signed with an Apple Developer ID certificate and is not Apple-notarized.
+
+After downloading from the official GitHub Release and verifying the published SHA-256, macOS may block the first launch. Try opening the app once, then use “System Settings → Privacy & Security → Security → Open Anyway” to explicitly allow that copy.
+
+Do not install builds obtained from untrusted third-party websites.
+
 <a id="overview"></a>
 ## Overview
 

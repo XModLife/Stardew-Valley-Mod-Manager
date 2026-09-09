@@ -99,6 +99,8 @@ A restart is required to fully apply a language change so app content and native
 The current 1.0.0 build has a **minimum deployment target of macOS 27.0**.
 
 - **Supported:** macOS 27.0 and later.
+- **Architecture:** Apple Silicon Mac (arm64).
+- **Intel Macs are not supported by the current v1.0.0 build.**
 - **Not supported by the current build:** macOS 26 and earlier; the application cannot launch there.
 - Future macOS versions are intended compatibility targets, but releases that do not yet exist or have not been tested cannot be guaranteed in advance.
 - Stardew Valley for macOS.
@@ -111,9 +113,23 @@ The current 1.0.0 build has a **minimum deployment target of macOS 27.0**.
 
 ### [Download the latest official release →](https://github.com/XModLife/Stardew-Valley-Mod-Manager/releases/latest)
 
+## macOS Security Notice
+
+SVMM v1.0.0 is currently distributed independently through GitHub and is **not signed with an Apple Developer ID certificate and is not Apple-notarized**.
+
+As a result, macOS Gatekeeper may warn on first launch that it cannot verify the developer or cannot check the app for malicious software. This does not mean that the build comes from the Mac App Store or that Apple has verified it.
+
+Download SVMM only from this repository's official GitHub Releases and verify the SHA-256 value published with the release.
+
+After confirming that the file came from the official release, if macOS blocks the first launch, try opening the app once and then go to:
+
+**System Settings → Privacy & Security → Security → Open Anyway**
+
+Follow the macOS confirmation prompts. Do not install copies obtained from untrusted third-party websites.
+
 ## Documentation
 
-- [使用手册](USER-GUIDE.zh-CN.md) · [User Manual](USER-GUIDE.en.md)
+- [使用手册](USER-GUIDE.md) · [User Manual](USER-GUIDE.en.md)
 - [隐私政策](PRIVACY.md) · [Privacy Policy](PRIVACY.en.md)
 - [软件许可协议](SOFTWARE-LICENSE.md) · [Software License Agreement](SOFTWARE-LICENSE.en.md)
 - [Known Issues](KNOWN-ISSUES.md)

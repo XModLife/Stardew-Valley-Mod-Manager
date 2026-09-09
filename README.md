@@ -128,6 +128,8 @@ SVMM 当前支持：
 当前 1.0.0 Build 的**最低部署目标为 macOS 27.0**。
 
 - **支持：macOS 27.0 及更高版本**
+- **架构：Apple Silicon Mac（arm64）**
+- **当前 v1.0.0 不支持 Intel Mac**
 - **不支持：macOS 26 及更早版本（当前构建无法直接启动）**
 - 更高版本的 macOS 原则上属于兼容目标，但尚未发布或未实际测试的未来系统版本不能提前保证完全兼容。
 - macOS 版 Stardew Valley
@@ -145,6 +147,22 @@ SVMM 当前支持：
 ### [下载最新官方版本 →](https://github.com/XModLife/Stardew-Valley-Mod-Manager/releases/latest)
 
 为避免获得被修改或倒卖的软件，请只从开发者明确指定的官方分发渠道获取 SVMM。**不要向第三方支付 SVMM 应用本身的购买费用。**
+
+## macOS 安全提示
+
+SVMM v1.0.0 当前通过 GitHub 独立分发，**尚未使用 Apple Developer ID 证书签名，也未经过 Apple Notarization（公证）**。
+
+因此，从互联网下载 DMG 后首次启动时，macOS Gatekeeper 可能提示无法验证开发者或无法检查该 App 是否包含恶意软件。这并不表示 SVMM 来自 Mac App Store，也不表示 Apple 已经验证该版本。
+
+请只从本仓库的官方 GitHub Release 下载 SVMM，并核对 Release 页面提供的 SHA-256。
+
+确认文件来自官方 Release 后，如 macOS 阻止首次启动，可先尝试打开一次，然后前往：
+
+**系统设置 → 隐私与安全性 → 安全性 → 仍要打开（Open Anyway）**
+
+按照 macOS 的系统提示确认即可。不要从不明第三方网站下载安装包。
+
+> 未来如项目加入 Apple Developer Program，可再改用 Developer ID 签名与 Apple Notarization，以获得更顺畅的 Gatekeeper 首次启动体验。
 
 ## 首次使用
 

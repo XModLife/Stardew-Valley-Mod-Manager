@@ -80,6 +80,20 @@ SVMM 支持 **English**、**简体中文**和**跟随系统**。
   <img src="docs/images/zh-CN/settings.png" alt="语言与设置" width="94%">
 </p>
 
+## 系统要求
+
+- macOS 27.0 或更高版本
+- Apple Silicon Mac（arm64）
+- 当前 v1.0.0 不支持 Intel Mac
+
+## 安装与 Gatekeeper
+
+当前 v1.0.0 GitHub 发布包未使用 Apple Developer ID 签名，也未经过 Apple Notarization。
+
+从官方 GitHub Release 下载后，macOS 可能在首次启动时阻止 App。确认 DMG 来自官方 Release 并核对 SHA-256 后，可先尝试打开一次，再进入“系统设置 → 隐私与安全性 → 安全性”，使用“仍要打开（Open Anyway）”完成首次启动授权。
+
+不要使用来自不明第三方网站的安装包，也不要公开或传播自己的 Nexus API Key、密码或其他凭据。
+
 <a id="overview"></a>
 ## 概览
 

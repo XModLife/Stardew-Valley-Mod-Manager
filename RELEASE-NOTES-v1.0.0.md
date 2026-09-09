@@ -7,6 +7,8 @@ Stardew Valley Mod Manager（SVMM）首次公开发布。
 ## 系统要求
 
 - **macOS 27.0 或更高版本**
+- **Apple Silicon Mac（arm64）**
+- **当前 v1.0.0 不支持 Intel Mac**
 - macOS 版 Stardew Valley
 - 正常 Mod 环境推荐配合 SMAPI 使用
 
@@ -44,6 +46,12 @@ Stardew Valley Mod Manager（SVMM）首次公开发布。
 
 完整列表参阅仓库中的 `KNOWN-ISSUES.md`。
 
+## macOS 安全提示
+
+当前 v1.0.0 安装包未使用 Apple Developer ID 签名，也未经过 Apple Notarization。
+
+首次启动可能触发 macOS Gatekeeper 提示。请确认 DMG 来自本仓库官方 Release，并核对同时提供的 SHA-256。确认来源后，可在“系统设置 → 隐私与安全性 → 安全性”中使用“仍要打开（Open Anyway）”完成首次启动授权。
+
 ## 下载与分发
 
 请只从本仓库的官方 GitHub Release 获取 SVMM 安装文件。
@@ -56,7 +64,9 @@ SVMM 当前免费提供个人、非商业使用。软件为闭源、专有软件
 
 Stardew Valley Mod Manager v1.0.0 is the first public release of SVMM, a Chinese-friendly native Stardew Valley Mod manager for macOS.
 
-**Minimum system:** macOS 27.0 or later.
+**Minimum system:** macOS 27.0 or later.  
+**Architecture:** Apple Silicon Mac (arm64).  
+**Intel Macs are not supported by this v1.0.0 build.**
 
 SVMM provides native Mod-library management, notes, categories, profiles, diagnostics, save/farm overview, SMAPI metadata checks, optional Nexus Mods workflows, conservative update/dependency transactions, and Simplified Chinese / English localization.
 

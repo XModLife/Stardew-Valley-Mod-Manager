@@ -51,3 +51,9 @@ No. SVMM can scan, organize, diagnose, and perform supported management operatio
 ## Where should I report a bug? / Bug 在哪里反馈？
 
 Use [GitHub Issues](https://github.com/XModLife/Stardew-Valley-Mod-Manager/issues) for ordinary bugs and compatibility reports. For security vulnerabilities, follow [SECURITY.md](SECURITY.md).
+
+## macOS 为什么提示无法验证开发者或无法检查 App？ / Why does macOS warn that it cannot verify the developer?
+
+SVMM v1.0.0 当前没有 Apple Developer ID 签名，也没有 Apple Notarization，因此从互联网下载后可能触发 Gatekeeper 提示。请只使用官方 GitHub Release，并核对发布页提供的 SHA-256；确认来源后，可通过“系统设置 → 隐私与安全性 → 安全性 → 仍要打开（Open Anyway）”进行首次授权。
+
+SVMM v1.0.0 is not Developer ID-signed or Apple-notarized. Download only from the official GitHub Release, verify the published SHA-256, and use macOS “Open Anyway” only after confirming the file's source.
