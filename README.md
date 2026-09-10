@@ -10,8 +10,9 @@
 </p>
 
 <p align="center">
-  <img alt="最低系统" src="https://img.shields.io/badge/最低系统-macOS%2027.0%2B-111111?logo=apple&logoColor=white">
+  <img alt="最低系统" src="https://img.shields.io/badge/最低系统-macOS%2015.0%2B-111111?logo=apple&logoColor=white">
   <img alt="版本" src="https://img.shields.io/badge/版本-1.0.0-0969da">
+  <img alt="架构" src="https://img.shields.io/badge/架构-Universal%202-555555">
   <img alt="语言" src="https://img.shields.io/badge/语言-简体中文%20%7C%20English-8250df">
   <img alt="数据" src="https://img.shields.io/badge/数据-本地优先-1a7f37">
   <img alt="许可" src="https://img.shields.io/badge/许可-专有软件-d97706">
@@ -48,97 +49,198 @@ SVMM 从设计阶段就把简体中文界面、中文文档和中文玩家的实
 
 SVMM 重点关注：
 
-- **中文友好**：简体中文优先呈现，同时提供 English，并支持跟随系统语言。
-- **原生 macOS 体验**：Sidebar、Toolbar、菜单、窗口、快捷键，以及与 Finder 使用习惯相匹配的操作方式。
+- **中文友好与可本地化**：简体中文优先维护，同时提供 English；名称备注可以把难以记忆或不熟悉语言的 Mod 名称转换为自己易理解的本地备注。
+- **原生 macOS 体验**：Sidebar、Toolbar、菜单、窗口、快捷键，以及与 Finder 使用习惯相匹配的交互。
 - **本地优先（Local-first）**：核心 Mod 管理数据保存在用户自己的 Mac 上。
-- **实用的组织能力**：名称备注、分类、配置方案、诊断、依赖与更新流程集中在一个桌面应用中。
-- **保守的文件操作**：受支持的更新和依赖安装会尽量执行校验、备份、回滚，并在适用时保留配置文件。
+- **实用组织能力**：名称备注、分类、配置方案、扫描诊断、依赖与更新流程集中在一个桌面应用中。
+- **保守的文件事务**：受支持的更新与依赖安装会进行结构与身份校验，并尽可能执行备份、配置保留与失败回滚。
+- **单一跨版本代码库**：当前正式版本以 macOS 15.0 为最低部署目标，并在较新 macOS 版本继续使用适合的新系统能力。
 
 <p align="center">
-  <img src="docs/images/zh-CN/overview.png" alt="SVMM 概览" width="100%">
+  <img src="docs/images/zh-CN/overview.png" alt="SVMM 概览" width="96%">
 </p>
 
-<p align="center"><sub>概览 —— 农场状态、Mod 状态、更新检查与当前配置方案。</sub></p>
+<p align="center"><sub>概览 —— 集中查看 Mod 状态、更新检查、当前配置方案以及 Stardew Valley 存档摘要。</sub></p>
 
-## 当前版本说明与已知问题
+## 当前支持与测试状态
 
-SVMM 仍处于首次公开版本阶段。虽然核心功能已经可以正常使用，但不同 Mod 结构、第三方服务和 macOS 系统行为仍可能带来尚未覆盖的边缘情况。
+当前正式构建的最低部署目标已经调整为 **macOS 15.0**。同一份应用代码面向 macOS 15.0 及更高版本维护，不再保留单独的“macOS 27 专用版”。
 
-当前已知事项包括：
+| 环境 | 当前状态 |
+| --- | --- |
+| **macOS 15.0** | 支持，核心功能可正常使用。当前虚拟机测试中，“分类”页面的首次进入和部分选择操作比新系统更慢，但不影响已确认的数据正确性与主要工作流。 |
+| **macOS 26.0** | 已测试，主要界面与“分类”页面运行流畅。 |
+| **macOS 27.0** | 已测试，主要界面与“分类”页面运行流畅。 |
+| **Apple Silicon** | 原生 arm64 构建已实际测试。 |
+| **Intel / x86_64** | 正式 Archive 包含 x86_64 slice；已在 Apple Silicon 上通过 Rosetta 2 验证 x86_64 可执行路径。尚未完成独立 Intel 实机回归测试。 |
 
-- **macOS beta / seed 系统的“帮助”菜单可能短暂变化。** 在部分 macOS 测试版环境中，系统可能在首次打开“帮助”菜单时动态加入“将 Stardew Valley Mod Manager 的使用反馈发送给 Apple”等 Feedback Assistant 项目，因此菜单内容可能出现一次短暂的出现 / 消失或重新排列。这是 macOS 测试版系统提供的反馈入口，不属于 SVMM 自己的“使用手册”，也不会影响 Mod 数据、分类、配置方案或其他核心功能。
-- **非标准 Mod 目录结构仍可能存在边缘兼容情况。** SVMM 会尽量诊断特殊目录结构、Manifest 与依赖信息，但第三方 Mod 的目录组织和发布方式并不完全统一。
-- **第三方服务可能发生变化。** Nexus Mods、SMAPI、GitHub 或相关下载基础设施的 API、页面和授权机制变化，可能影响对应的在线功能。
+> macOS 15.0 的性能结论来自当前虚拟机测试环境，不能等同于所有 macOS 15 实机的绝对性能基准。SVMM 不会仅为追求旧系统与新系统完全一致的动画/响应速度而维护另一套独立界面实现。
 
-完整列表参阅 [KNOWN-ISSUES.md](KNOWN-ISSUES.md)。
-
-如果遇到可以稳定复现的问题，请通过 [GitHub Issues](https://github.com/XModLife/Stardew-Valley-Mod-Manager/issues) 反馈，并尽量附上 SVMM、macOS、Stardew Valley 与 SMAPI 版本信息。
+完整已知事项见 [KNOWN-ISSUES.md](KNOWN-ISSUES.md)。
 
 ## 核心功能
 
-### Mod 库
+### Mod 库：卡片视图
 
-支持**卡片视图与列表视图**、状态筛选、排序、多选、名称备注、依赖信息与更新状态查看。
+用于快速浏览 Mod。可用时显示 Nexus 缩略图，并结合状态、名称备注等信息帮助识别 Mod。
 
-| 卡片视图 | 列表视图 |
-| --- | --- |
-| ![Mod 库卡片视图](docs/images/zh-CN/mod-library-card.png) | ![Mod 库列表视图](docs/images/zh-CN/mod-library-list.png) |
+<p align="center">
+  <img src="docs/images/zh-CN/mod-library-card.png" alt="Mod 库卡片视图" width="96%">
+</p>
 
-### 分类与配置方案
+### Mod 库：列表视图
 
-**分类**用于整理 Mods。  
-**配置方案**用于保存并应用实际的启用 / 停用组合。
+用于比较名称、备注名称、版本、类型、依赖、状态与安装时间等结构化信息，并支持排序与多选管理。
 
-| 分类 | 配置方案 |
-| --- | --- |
-| ![分类](docs/images/zh-CN/categories.png) | ![配置方案](docs/images/zh-CN/profiles.png) |
+<p align="center">
+  <img src="docs/images/zh-CN/mod-library-list.png" alt="Mod 库列表视图" width="96%">
+</p>
 
-### 更新与依赖
+### Mod 名称备注：让本地管理更容易理解
 
-SVMM 可以结合 SMAPI 元数据以及可选的 Nexus Mods 连接，辅助处理受支持的 Mod 更新与依赖获取。
+许多 Stardew Valley Mod 使用英文、作者缩写或较长的项目名。SVMM 允许用户给 Mod 添加**名称备注**，例如把一个难以快速识别的英文 Mod 记为自己熟悉的中文名称。
 
-- Nexus Mods 连接是**可选功能**。
-- 免费账户可使用受支持的浏览器 / NXM 流程。
-- 符合条件的 Premium 账户可使用受支持的直接下载流程。
-- 自动安装采用保守策略；来源不明确或不受支持的情况继续由用户手动处理。
-- 受支持的安装事务会校验包结构，并尽可能保留备份与回滚信息。
+名称备注：
 
-更详细的 Free / Premium 操作流程放在[使用手册](USER-GUIDE.md)中。
+- 只属于 SVMM 的本地管理数据；
+- 不会修改 Mod 作者原始名称；
+- 不会改写 `manifest.json`；
+- 可用于 Mod 库与详情等界面中的辅助识别；
+- 可以和普通备注一起导入、导出及备份。
+
+<p align="center">
+  <img src="docs/images/zh-CN/mod-name-note.png" alt="Mod 名称备注" width="72%">
+</p>
+
+<p align="center"><sub>名称备注 —— 用自己熟悉的语言记录 Mod 名称，同时保留作者原始名称与 Unique ID。</sub></p>
+
+### 分类
+
+分类负责“怎么整理”。系统默认分类方案提供只读参考，用户也可以创建自己的分类方案并调整 Mod 所属类目。
+
+<p align="center">
+  <img src="docs/images/zh-CN/categories.png" alt="分类" width="96%">
+</p>
+
+### 配置方案
+
+配置方案负责“这次实际启用哪些 Mods”。可以保存不同的启用/停用组合，用于不同存档、玩法或测试环境之间切换。
+
+<p align="center">
+  <img src="docs/images/zh-CN/profiles.png" alt="配置方案" width="96%">
+</p>
+
+### 更新与 Nexus Mods
+
+SVMM 可以结合 Mod 元数据、SMAPI 与可选的 Nexus Mods 连接，辅助检查和处理受支持的 Mod 更新。
+
+Nexus Mods 连接不是使用本地管理功能的前提：
+
+- **Free 账户**：通过浏览器 / NXM 授权继续受支持的下载与安装流程；
+- **Premium 账户**：在符合条件时可以直接获取下载链接，并支持批量更新；
+- 来源不明确、文件无法可靠判断或结构不受支持时，SVMM 会停止自动化而不是猜测。
+
+#### Free 账户更新流程
+
+<p align="center">
+  <img src="docs/images/zh-CN/update-free.png" alt="Nexus Free 账户更新流程" width="96%">
+</p>
+
+#### Premium 批量更新
+
+<p align="center">
+  <img src="docs/images/zh-CN/update-premium-batch.png" alt="Nexus Premium 批量更新" width="96%">
+</p>
+
+### 组合 Mod 更新包
+
+部分作者会把两个或多个必须共同发布的 Mod 组件放在同一个 ZIP 中。SVMM 当前更新事务已经支持**经过验证的 bundled multi-Mod package**：
+
+- 更新包可包含多个 `manifest.json`；
+- 必须能够明确识别当前目标 Mod 以及同包组件；
+- 已安装的同包组件可在同一事务中更新；
+- 尚未安装、但属于同一受验证组合包的组件可随事务安装；
+- 受支持的配置文件会尽可能保留；
+- 任一关键步骤失败时，事务会尝试整体回滚，避免留下“只更新一半”的状态；
+- 身份冲突、重复 Unique ID、路径冲突、降级风险或无法证明包结构安全时，自动更新会停止。
+
+### 依赖获取
+
+SVMM 会读取 Manifest 中的依赖声明，区分缺失、已停用、版本过低、版本未知和重复 Unique ID 等状态，并在来源可靠时提供获取入口。
+
+#### Free 账户获取依赖
+
+<p align="center">
+  <img src="docs/images/zh-CN/dependencies-free.png" alt="Nexus Free 账户获取依赖" width="96%">
+</p>
+
+#### Premium 批量获取依赖
+
+<p align="center">
+  <img src="docs/images/zh-CN/dependencies-premium-batch.png" alt="Nexus Premium 批量获取依赖" width="96%">
+</p>
+
+对于作者以多个必需组件共同打包的依赖 ZIP，SVMM 同样采用 bundled package 校验与单事务安装策略，而不是简单因为存在多个 `manifest.json` 就拒绝。
 
 ### 设置
 
-在原生 macOS 设置页中配置 Stardew Valley 路径、Mods 目录、Nexus Mods 连接、界面语言以及本地维护工具。
+设置页面集中管理游戏 / Mods 目录、界面语言、Nexus Mods 连接以及本地维护能力。
 
 <p align="center">
-  <img src="docs/images/zh-CN/settings.png" alt="SVMM 设置" width="92%">
+  <img src="docs/images/zh-CN/settings.png" alt="SVMM 设置" width="96%">
 </p>
 
-## 界面语言
+### 存储、缓存与数据备份
 
-SVMM 当前支持：
+SVMM 提供面向本地数据的维护工具，用于控制缓存、临时事务数据以及用户自己的管理记录。
+
+当前包括：
+
+- 查看并清理 **Nexus 缩略图缓存**；
+- 查看与清理 SVMM 管理的 **Mod 临时文件 / 更新事务残留**；
+- 查看并清理已经卸载 Mod 留下的名称备注、普通备注、用户更新来源、分类或配置方案成员等管理记录；
+- **导入 / 导出 Mod 备注数据**；
+- **创建管理器数据备份**；
+- **从备份恢复所选数据**。
+
+这些功能针对的是 SVMM 自己管理的缓存和管理数据，不会把“清理缓存”解释为卸载正常 Mod。
+
+<p align="center">
+  <img src="docs/images/zh-CN/data-cache-backup.png" alt="数据缓存与备份管理" width="96%">
+</p>
+
+<p align="center"><sub>设置中的存储与管理器数据区域 —— 缓存清理、残留记录、备注导入导出以及数据备份/恢复集中管理。</sub></p>
+
+## 界面语言与更多语言
+
+SVMM 当前由开发者正式维护和审核的界面语言为：
 
 1. **简体中文**
 2. **English**
 3. **跟随系统**
 
-修改语言后需要重新启动应用才能完整应用。这样可以让应用主体与 macOS 原生菜单一次性统一切换，避免运行过程中出现部分中英混排。
+“跟随系统”并不是机器翻译。它表示让 macOS 在 **SVMM 已经提供的本地化资源**中选择最合适的语言。
+
+SVMM 的界面文本已经采用本地化资源 / String Catalog 架构组织，设计上**保留继续增加其他语言的空间**。但是：
+
+- 当前没有官方维护的第三种语言；
+- 开发者不会把自己无法理解和审核的语言直接标记为“官方完整支持”；
+- 对于开发者不具备语言能力的翻译，需要能够实际使用该语言的贡献者参与翻译、校对和版本更新审核；
+- 如果希望协助增加其他语言，可通过 [GitHub Issues](https://github.com/XModLife/Stardew-Valley-Mod-Manager/issues) 或 **SVMM@npccare.cn** 联系开发者讨论协作方式。
+
+修改界面语言后需要重新启动应用，确保 SwiftUI 内容与 macOS 原生菜单从启动阶段使用同一语言。
 
 ## 系统要求
 
-当前 1.0.0 Build 的**最低部署目标为 macOS 27.0**。
+- **最低系统：macOS 15.0**
+- **构建架构：Universal 2（arm64 + x86_64）**
+- Apple Silicon 为主要实际测试平台；
+- x86_64 slice 已通过 Rosetta 2 启动验证，但 Intel 实机完整回归测试尚未完成；
+- macOS 版 Stardew Valley；
+- 正常 Mod 环境通常需要 SMAPI；
+- 用户需要授权 SVMM 访问实际使用的 Stardew Valley / `Mods` 位置。
 
-- **支持：macOS 27.0 及更高版本**
-- **架构：Apple Silicon Mac（arm64）**
-- **当前 v1.0.0 不支持 Intel Mac**
-- **不支持：macOS 26 及更早版本（当前构建无法直接启动）**
-- 更高版本的 macOS 原则上属于兼容目标，但尚未发布或未实际测试的未来系统版本不能提前保证完全兼容。
-- macOS 版 Stardew Valley
-- 正常的 Mod 游戏环境通常需要 SMAPI
-- 用户授权 SVMM 访问实际使用的 Stardew Valley 游戏 / `Mods` 位置
-
-> `macOS 27.0+` 的含义是“最低需要 macOS 27.0”，并不是“只能在 macOS 27 上运行”。
-
-如果未来需要支持 macOS 26 或更早版本，需要单独降低项目 Deployment Target，并审查、替换和测试所有依赖较新 macOS API 的代码；仅修改 README 或 Badge 无法获得向下兼容能力。
+> `macOS 15.0+` 表示 15.0 是最低部署目标。未来尚未发布或尚未实际测试的 macOS 版本不能提前保证完全兼容。
 
 ## 下载
 
@@ -150,30 +252,35 @@ SVMM 当前支持：
 
 ## macOS 安全提示
 
-SVMM v1.0.0 当前通过 GitHub 独立分发，**尚未使用 Apple Developer ID 证书签名，也未经过 Apple Notarization（公证）**。
+SVMM v1.0.0 通过 GitHub 独立分发。当前发布包**未使用 Apple Developer ID 证书签名，也未经过 Apple Notarization（公证）**。
 
-因此，从互联网下载 DMG 后首次启动时，macOS Gatekeeper 可能提示无法验证开发者或无法检查该 App 是否包含恶意软件。这并不表示 SVMM 来自 Mac App Store，也不表示 Apple 已经验证该版本。
+因此，从互联网下载后首次启动时，macOS Gatekeeper 可能提示无法验证开发者或无法检查该 App 是否包含恶意软件。
 
-请只从本仓库的官方 GitHub Release 下载 SVMM，并核对 Release 页面提供的 SHA-256。
-
-确认文件来自官方 Release 后，如 macOS 阻止首次启动，可先尝试打开一次，然后前往：
+请只从本仓库官方 GitHub Release 下载，并核对 Release 页面提供的 SHA-256。确认来源后，如 macOS 阻止首次启动，可先尝试打开一次，然后前往：
 
 **系统设置 → 隐私与安全性 → 安全性 → 仍要打开（Open Anyway）**
-
-按照 macOS 的系统提示确认即可。不要从不明第三方网站下载安装包。
-
-> 未来如项目加入 Apple Developer Program，可再改用 Developer ID 签名与 Apple Notarization，以获得更顺畅的 Gatekeeper 首次启动体验。
 
 ## 首次使用
 
 1. 从官方 GitHub Releases 下载 SVMM。
-2. 打开应用，并按照 macOS 的安全提示完成启动。
-3. 在“**设置**”中选择你实际使用的 Stardew Valley 游戏位置 / Mods 目录。
+2. 按照 macOS 安全提示完成首次启动。
+3. 在“设置”中选择实际使用的 Stardew Valley / Mods 位置。
 4. 授权 SVMM 扫描 Mods 文件夹。
-5. 在执行大规模 Mod 管理操作前，先查看“**概览**”与“**扫描诊断**”。
-6. 如需要受支持的 Nexus 元数据和下载流程，可选择连接 Nexus Mods。
+5. 先查看“概览”和“扫描诊断”，确认当前环境。
+6. 如需要 Nexus 元数据、缩略图或受支持的下载工作流，再选择连接 Nexus Mods。
+7. 在进行大型更新或配置调整前，建议创建独立备份。
 
-> 当用户主动执行启用、停用、更新、安装依赖、删除 Mod 或应用配置方案等操作时，SVMM 会执行对应的本地文件管理。重要的游戏与 Mod 环境仍建议保留独立备份。
+## 当前版本说明与已知问题
+
+SVMM 1.0.0 是首次公开发行版本。当前已经确认的主要环境差异与边界包括：
+
+- **macOS 15.0 分类页面响应速度较新系统慢**：在当前虚拟机测试中，首次进入分类以及部分行选择操作存在更明显延迟；功能可用，未发现因此导致的数据损坏。macOS 26.0 与 macOS 27.0 测试流畅。
+- **macOS beta / seed 的“帮助”菜单可能短暂变化**：系统可能动态注入 Feedback Assistant 项目，这是 macOS 行为，不影响 SVMM 核心数据。
+- **非标准第三方 Mod 包仍可能需要人工判断**：SVMM 会尽量验证 Manifest、Unique ID、依赖与文件结构，但不会对无法可靠证明安全的包进行猜测式安装。
+- **第三方服务可能变化**：Nexus Mods、SMAPI、GitHub 或相关 CDN/API 的变化可能影响可选在线功能。
+- **Intel 实机验证有限**：Universal 2 构建包含 x86_64，但目前主要测试集中于 Apple Silicon；欢迎 Intel 用户提供可复现的兼容性反馈。
+
+完整列表参阅 [KNOWN-ISSUES.md](KNOWN-ISSUES.md)。
 
 ## 用户文档
 
@@ -194,13 +301,13 @@ SVMM 采用**本地优先（Local-first）**模式。
 
 部分可选功能会直接访问 SMAPI、Nexus Mods、GitHub 及相关下载基础设施。Nexus API 凭据保存在 macOS 钥匙串（Keychain）中。
 
-完整内容请参阅[隐私政策](PRIVACY.md)。
+完整内容请参阅 [隐私政策](PRIVACY.md)。
 
 ## 软件许可与分发
 
 SVMM 是**闭源、专有软件**，当前免费提供给用户用于**个人、非商业用途**。
 
-在 GitHub 公开发布安装版本与用户文档，并不意味着 SVMM 转为开源软件，也不授予超出[软件许可协议](SOFTWARE-LICENSE.md)范围的源代码、再分发、修改或商业使用权利。
+在 GitHub 公开发布安装版本与用户文档，并不意味着 SVMM 转为开源软件，也不授予超出 [软件许可协议](SOFTWARE-LICENSE.md) 范围的源代码、再分发、修改或商业使用权利。
 
 应用可能展示开发者的个人支付宝收款码，用于用户自愿支持独立开发。支持完全可选，不会解锁功能、不会形成订阅，也不会获得额外软件许可权利。
 
@@ -208,11 +315,15 @@ SVMM 是**闭源、专有软件**，当前免费提供给用户用于**个人、
 
 普通 Bug、兼容性问题、文档错误和明确的功能建议请使用 [GitHub Issues](https://github.com/XModLife/Stardew-Valley-Mod-Manager/issues)。
 
-提交前请：
+涉及性能或兼容性时，请同时说明：
 
-- 删除或遮盖 Nexus API Key、密码、Token、支付凭据及其他秘密信息；
-- 检查截图和诊断文本中是否包含不希望公开的本机用户名或文件路径；
-- 与问题相关时，提供 SVMM 版本、macOS 版本、Stardew Valley 版本和 SMAPI 版本。
+- SVMM 版本；
+- macOS 版本；
+- Mac 芯片 / 架构；
+- 物理 Mac 还是虚拟机；
+- Stardew Valley 与 SMAPI 版本（如相关）。
+
+提交前请删除或遮盖 Nexus API Key、密码、Token、支付凭据以及不希望公开的本机用户名、文件路径等信息。
 
 安全漏洞请按照 [SECURITY.md](SECURITY.md) 私下报告。
 
@@ -226,5 +337,5 @@ Stardew Valley、ConcernedApe 相关内容、SMAPI、Nexus Mods、第三方 Mods
 
 ## 联系方式
 
-**开发者：**李薇（Li Wei）  
-**邮箱：**SVMM@npccare.cn
+**开发者：** 李薇（Li Wei）  
+**邮箱：** SVMM@npccare.cn
