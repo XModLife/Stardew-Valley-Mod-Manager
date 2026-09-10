@@ -9,7 +9,7 @@ Stardew Valley Mod Manager（SVMM）首次公开发布。
 正式发布时请在此处填入最终 DMG 的 SHA-256：
 
 ```text
-SHA-256: eb5b5993ae54b31092c10cb02ffa95ffa5e625e4296863932f9dad1ff495a53e
+SHA-256: 7983ab8e9f2cb1fae73db7b11f3865ea457255cad4407a9cf83c82d17c8dc77c
 ```
 
 ## 系统要求与兼容性
