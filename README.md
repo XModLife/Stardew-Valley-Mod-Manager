@@ -52,7 +52,7 @@ SVMM 重点关注：
 - **中文友好与可本地化**：简体中文优先维护，同时提供 English；名称备注可以把难以记忆或不熟悉语言的 Mod 名称转换为自己易理解的本地备注。
 - **原生 macOS 体验**：Sidebar、Toolbar、菜单、窗口、快捷键，以及与 Finder 使用习惯相匹配的交互。
 - **本地优先（Local-first）**：核心 Mod 管理数据保存在用户自己的 Mac 上。
-- **实用组织能力**：名称备注、分类、配置方案、扫描诊断、依赖与更新流程集中在一个桌面应用中。
+- **实用组织与维护能力**：名称备注、分类、配置方案、Manifest 编辑、扫描诊断、依赖与更新流程集中在一个桌面应用中。
 - **保守的文件事务**：受支持的更新与依赖安装会进行结构与身份校验，并尽可能执行备份、配置保留与失败回滚。
 - **单一跨版本代码库**：当前正式版本以 macOS 15.0 为最低部署目标，并在较新 macOS 版本继续使用适合的新系统能力。
 
@@ -105,14 +105,37 @@ SVMM 重点关注：
 - 只属于 SVMM 的本地管理数据；
 - 不会修改 Mod 作者原始名称；
 - 不会改写 `manifest.json`；
-- 可用于 Mod 库与详情等界面中的辅助识别；
+- 可用于 Mod 库与详细信息面板中的辅助识别；
 - 可以和普通备注一起导入、导出及备份。
 
 <p align="center">
-  <img src="docs/images/zh-CN/mod-name-note.png" alt="Mod 名称备注" width="72%">
+  <img src="docs/images/zh-CN/mod-name-note.png" alt="Mod 名称备注与详细信息面板" width="52%">
 </p>
 
-<p align="center"><sub>名称备注 —— 用自己熟悉的语言记录 Mod 名称，同时保留作者原始名称与 Unique ID。</sub></p>
+<p align="center"><sub>名称备注与详细信息面板 —— 用自己熟悉的语言记录 Mod 名称，同时保留作者原始名称，并集中查看缩略图、更新来源与依赖状态。</sub></p>
+
+### Manifest 编辑：在应用内结构化修改 Mod 元数据
+
+部分第三方 Mod 的 `manifest.json` 可能存在版本号、Unique ID、更新来源或依赖声明与实际发布内容不一致的情况。SVMM 提供内置 Manifest Editor，可以直接从 Mod 库或分类页面打开当前 Mod 的 `manifest.json`，以结构化表单进行修改。
+
+当前编辑器支持：
+
+- 修改 `Name`、`Author`、`Version`、`UniqueID` 与 `Description`；
+- 修改 `EntryDll`、`MinimumApiVersion` 与 `MinimumGameVersion`；
+- 编辑 `UpdateKeys`；
+- 添加、删除或修改 `Dependencies`；
+- 编辑 `ContentPackFor`；
+- 在**结构化编辑**与**原始 JSON**之间切换；
+- 保存前重新验证 JSON / Manifest 结构，保存后自动重新扫描 Mod；
+- 结构化修改基于完整 JSON 对象写回，尽量保留与本次修改无关的未知字段。
+
+<p align="center">
+  <img src="docs/images/zh-CN/manifest-editor.png" alt="SVMM Manifest Editor 结构化编辑" width="92%">
+</p>
+
+<p align="center"><sub>Manifest Editor —— 常用字段可以直接以结构化表单修改；需要时也可以切换到原始 JSON。</sub></p>
+
+> 与“名称备注”和“用户更新来源覆盖”不同，Manifest Editor 会直接修改 Mod 自己的 `manifest.json`。
 
 ### 分类
 
