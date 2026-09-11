@@ -9,7 +9,7 @@ Stardew Valley Mod Manager（SVMM）v1.1.0 是在首个公开版本 1.0.0 基础
 正式 Release DMG 生成后，必须将下方占位符替换为最终文件的真实 SHA-256：
 
 ```text
-SHA-256: PENDING_FINAL_DMG_SHA256
+SHA-256: 1a179c549451f8c4ecb23eab0278d58c10a77b24ceeb8163aeffb9e1282a83bb
 ```
 
 在 SHA-256 尚未替换前，不应将本文件用于最终 GitHub Release。
