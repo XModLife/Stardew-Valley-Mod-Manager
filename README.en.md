@@ -108,10 +108,10 @@ Display-name notes:
 - can be included in note import/export and manager backups.
 
 <p align="center">
-  <img src="docs/images/en/mod-name-note.png" alt="Display-name Note" width="72%">
+  <img src="docs/images/en/mod-name-note.png" alt="Display-name Note and Mod Details Panel" width="52%">
 </p>
 
-<p align="center"><sub>Use your own familiar name while preserving the original Mod name and Unique ID.</sub></p>
+<p align="center"><sub>Mod Details — use a familiar display name while keeping the original Mod identity, and review the thumbnail, update source, and dependency status in one place.</sub></p>
 
 ### Manifest Editor — Structured `manifest.json` Maintenance
 
@@ -127,6 +127,12 @@ The editor supports:
 - switching between **Structured** and **Raw JSON** modes;
 - validation before saving and an automatic Mod rescan after saving;
 - structured writes based on the full JSON object so unrelated unknown fields can be preserved where possible.
+
+<p align="center">
+  <img src="docs/images/en/manifest-editor.png" alt="SVMM Manifest Editor in Structured mode" width="92%">
+</p>
+
+<p align="center"><sub>Manifest Editor — edit common fields in Structured mode, or switch to Raw JSON when needed.</sub></p>
 
 Unlike display-name notes or user update-source overrides, the Manifest Editor modifies the Mod's actual `manifest.json`.
 
@@ -362,3 +368,5 @@ Unless explicitly stated otherwise by the relevant rights holder, SVMM **is not 
 
 **Developer:** Li Wei（李薇）  
 **Email:** SVMM@npccare.cn
+
+<p align="center"><sub>Icon note: the in-game character outfit shown in the SVMM icon uses third-party Mods: <a href="https://www.nexusmods.com/stardewvalley/mods/13682">13682</a> · <a href="https://www.nexusmods.com/stardewvalley/mods/10102">10102</a>. Rights remain with their respective authors.</sub></p>
