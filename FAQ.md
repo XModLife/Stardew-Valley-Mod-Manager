@@ -40,11 +40,29 @@ Use the official [GitHub Releases page](https://github.com/XModLife/Stardew-Vall
 
 请通过官方 [GitHub Releases](https://github.com/XModLife/Stardew-Valley-Mod-Manager/releases) 获取。
 
+## Does SVMM check for application updates automatically? / SVMM 会自动检查软件自身更新吗？
+
+Yes. Starting with v1.1.0, SVMM silently checks the official GitHub Releases feed when the app starts. A launch notification appears only when the latest stable version is higher than the installed version. If SVMM is already up to date, the remote version is not higher, or the check fails, the automatic launch check stays silent.
+
+会。从 v1.1.0 起，SVMM 启动时会静默查询官方 GitHub Releases。只有检测到高于当前安装版本的正式版本时才显示更新提示；已是最新版、远端版本不高于当前版本或检查失败时，启动自动检查不会弹出更新提示。
+
+## Can SVMM download its own update inside the app? / 可以直接在 SVMM 内下载软件更新吗？
+
+Yes. When a newer stable Release is available, SVMM can download the official DMG inside the application and show progress. If GitHub provides a SHA-256 asset digest, SVMM verifies the file locally. The current version can open the downloaded disk image but does not automatically overwrite or install itself.
+
+可以。有新的正式版本时，SVMM 可以在应用内直接下载官方 DMG 并显示进度。GitHub 提供 SHA-256 digest 时会在本地校验文件。当前版本可以打开下载完成的安装镜像，但不会自动覆盖或安装自身。
+
+## Can I edit a Mod's `manifest.json` with SVMM? / 可以用 SVMM 修改 Mod 的 `manifest.json` 吗？
+
+Yes. v1.1.0 adds a Manifest Editor with Structured and Raw JSON modes. It edits the Mod's actual `manifest.json`, unlike display-name notes or user update-source overrides. Identity-critical changes such as Unique ID or dependencies should be made only when you have reliable source information.
+
+可以。v1.1.0 新增 Manifest Editor，提供结构化模式和原始 JSON 模式。它修改的是 Mod 的真实 `manifest.json`，与名称备注或用户更新来源覆盖不同。Unique ID、依赖等关键字段应只在有可靠来源信息时修改。
+
 ## Does SVMM upload my Mods or saves? / SVMM 会上传我的 Mods 或存档吗？
 
-The current version does not operate a developer-controlled server for uploading users' Mods, save files, or SVMM management databases. Optional features may communicate directly with third-party services such as SMAPI, Nexus Mods, and GitHub.
+The current version does not operate a developer-controlled server for uploading users' Mods, save files, or SVMM management databases. Some features communicate directly with third-party services such as SMAPI, Nexus Mods, and GitHub; v1.1.0 can also query GitHub Releases at launch for software updates.
 
-当前版本不运营用于接收用户 Mods、存档或 SVMM 管理数据库的开发者服务器。部分可选功能会直接访问 SMAPI、Nexus Mods、GitHub 等第三方服务。
+当前版本不运营用于接收用户 Mods、存档或 SVMM 管理数据库的开发者服务器。部分功能会直接访问 SMAPI、Nexus Mods、GitHub 等第三方服务；v1.1.0 还可以在启动时查询 GitHub Releases 检查软件更新。
 
 ## Do I need Nexus Mods? / 必须连接 Nexus Mods 吗？
 
@@ -102,9 +120,9 @@ No. SVMM can scan, organize, diagnose, and perform supported management operatio
 
 ## Why does macOS warn that it cannot verify the developer? / macOS 为什么提示无法验证开发者？
 
-SVMM v1.0.0 is currently not Developer ID-signed or Apple-notarized. Download only from the official GitHub Release, verify the published SHA-256, and use macOS “Open Anyway” only after confirming the file's source.
+The current official SVMM GitHub release build is not Developer ID-signed or Apple-notarized. Download only from the official GitHub Release, verify the published SHA-256, and use macOS “Open Anyway” only after confirming the file's source.
 
-SVMM v1.0.0 当前没有 Apple Developer ID 签名，也没有 Apple Notarization。请只使用官方 GitHub Release，并核对 SHA-256；确认来源后再使用“仍要打开（Open Anyway）”。
+当前官方 SVMM GitHub 发行包没有 Apple Developer ID 签名，也没有 Apple Notarization。请只使用官方 GitHub Release，并核对 SHA-256；确认来源后再使用“仍要打开（Open Anyway）”。
 
 ## Where should I report a bug? / Bug 在哪里反馈？
 

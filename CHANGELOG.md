@@ -1,5 +1,64 @@
 # 更新记录 / Changelog
 
+## 1.1.0 — 2026-09-11
+
+v1.1.0 是在 1.0.0 基础上的功能与维护更新，重点补充 Manifest 维护、Mod 管理体验、自动分类以及 SVMM 自身更新流程。
+
+### Manifest 与 Mod 管理
+
+- 新增 **Manifest Editor**，可从 Mod 库或分类页面打开单个 Mod 的 `manifest.json`；
+- 提供结构化编辑与原始 JSON 两种模式；
+- 支持 Name、Author、Version、UniqueID、Description、EntryDll、MinimumApiVersion、MinimumGameVersion、UpdateKeys、Dependencies 与 ContentPackFor；
+- 保存前执行内容验证，保存后自动重新扫描 Mods；
+- 结构化写回基于完整 JSON 对象，尽量保留与本次修改无关的未知字段；
+- 修复 Manifest Editor 模式切换时的 SwiftUI publishing warning；
+- Mod 详细信息面板新增 Nexus 缩略图；
+- Mod 库分类菜单会标记当前分类；
+- 分类页面新增搜索。
+
+### 自动分类
+
+- 扩充 UI / Interface / Cursor 等高置信度身份识别；
+- 改进 Fashion Sense 内容包、body type、custom farm、crib、plushie、tree pack、furniture placement 等分类规则；
+- 对部分语义不适合泛化的 Mod 使用精确名称映射；
+- 保持保守策略：无法可靠判断时继续保留“未识别”，不强行分类。
+
+### SVMM 软件更新
+
+- 启动时可静默检查官方 GitHub Releases 的最新正式版本；
+- 只有远端正式版本高于当前版本时才显示启动更新提示；
+- 已是最新版、远端版本不高于当前版本、网络失败或版本解析失败时，启动检查保持静默；
+- 保留“帮助 → 更新软件”手动检查；
+- 支持在 SVMM 内直接下载官方 Release DMG 并显示进度；
+- GitHub 提供 Release Asset SHA-256 digest 时执行本地校验；
+- 校验失败会删除下载文件；
+- 下载成功后可让 macOS 打开安装镜像；
+- 当前版本不自动覆盖 `/Applications` 中的 SVMM，不自动完成安装；
+- GitHub Release 页面继续作为备用下载入口。
+
+### 文档与隐私
+
+- 软件版本更新为 **1.1.0（Build 2）**；
+- 隐私政策更新为 **1.1 / 2026-09-11**，明确说明 GitHub Releases 启动检查、DMG 下载、缓存与本地 SHA-256 校验；
+- 软件许可协议继续使用 **1.0 / 2026-09-10**，许可条件未改变。
+
+### English Summary
+
+Version 1.1.0 adds:
+
+- a structured/Raw JSON Manifest Editor with validation and post-save rescanning;
+- category search, current-category checkmarks, and a Nexus thumbnail in Mod details;
+- refined conservative automatic classification rules;
+- silent launch-time checks for newer stable SVMM Releases;
+- in-app DMG downloads with progress;
+- local SHA-256 verification when GitHub provides an asset digest;
+- an **Open Disk Image** workflow without automatic self-replacement or installation;
+- Privacy Policy 1.1 describing the new GitHub update behavior.
+
+The Software License Agreement remains version 1.0 because the licensing terms did not change.
+
+---
+
 ## 1.0.0 — 2026-09-10
 
 Stardew Valley Mod Manager（SVMM）首次公开发布。

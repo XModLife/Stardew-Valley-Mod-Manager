@@ -11,7 +11,7 @@
 
 <p align="center">
   <img alt="Minimum macOS" src="https://img.shields.io/badge/Minimum%20macOS-15.0%2B-111111?logo=apple&logoColor=white">
-  <img alt="Version" src="https://img.shields.io/badge/Version-1.0.0-0969da">
+  <img alt="Version" src="https://img.shields.io/badge/Version-1.1.0-0969da">
   <img alt="Architecture" src="https://img.shields.io/badge/Architecture-Universal%202-555555">
   <img alt="Languages" src="https://img.shields.io/badge/Languages-Simplified%20Chinese%20%7C%20English-8250df">
   <img alt="Data" src="https://img.shields.io/badge/Data-Local--first-1a7f37">
@@ -51,7 +51,7 @@ SVMM focuses on:
 - **Chinese-friendly and localization-aware management** — Simplified Chinese is maintained as a primary language, English is also provided, and display-name notes let users describe Mods in language that is easier for them to understand.
 - **Native macOS interaction** — Sidebar, Toolbar, menus, windows, keyboard shortcuts, and Finder-like workflows.
 - **Local-first data** — core Mod-management data remains on the user's Mac.
-- **Practical organization** — display-name notes, categories, profiles, diagnostics, dependency handling, and update workflows in one desktop app.
+- **Practical organization and maintenance** — display-name notes, categories, profiles, Manifest editing, diagnostics, dependency handling, Mod updates, and SVMM software-update workflows in one desktop app.
 - **Conservative file transactions** — supported update/dependency operations validate package structure and identity and, where applicable, preserve configuration, create backups, and roll back failures.
 - **One cross-version codebase** — the official build targets macOS 15.0 or later while using newer system capabilities conditionally when appropriate.
 
@@ -113,9 +113,28 @@ Display-name notes:
 
 <p align="center"><sub>Use your own familiar name while preserving the original Mod name and Unique ID.</sub></p>
 
+### Manifest Editor — Structured `manifest.json` Maintenance
+
+Some third-party Mods ship with metadata that does not fully match the actual release, such as an incorrect version, Unique ID, update source, or dependency declaration. SVMM includes a Manifest Editor that can be opened from the Mod Library or Categories page.
+
+The editor supports:
+
+- `Name`, `Author`, `Version`, `UniqueID`, and `Description`;
+- `EntryDll`, `MinimumApiVersion`, and `MinimumGameVersion`;
+- `UpdateKeys`;
+- adding, removing, and editing `Dependencies`;
+- `ContentPackFor`;
+- switching between **Structured** and **Raw JSON** modes;
+- validation before saving and an automatic Mod rescan after saving;
+- structured writes based on the full JSON object so unrelated unknown fields can be preserved where possible.
+
+Unlike display-name notes or user update-source overrides, the Manifest Editor modifies the Mod's actual `manifest.json`.
+
 ### Categories
 
 Categories answer “how should these Mods be organized?” The system default classification is a read-only reference, while user schemes can contain editable assignments and categories.
+
+v1.1.0 adds search to the Categories page and expands high-confidence classification rules for UI, clothing, furniture, decorations, maps, tools, environment, and related patterns. When SVMM cannot classify a Mod reliably, it continues to leave it unrecognized rather than forcing a category.
 
 <p align="center">
   <img src="docs/images/en/categories.png" alt="Categories" width="96%">
@@ -180,6 +199,20 @@ SVMM reads Manifest dependency declarations and distinguishes states such as mis
 </p>
 
 For dependency ZIPs that contain multiple required components, SVMM likewise uses validated bundled-package rules and a single transaction instead of rejecting the package merely because multiple manifests exist.
+
+### SVMM Software Updates
+
+Starting with SVMM 1.1.0, the application includes its own update-check and download workflow:
+
+- silently check the official GitHub Releases feed at launch;
+- show an update notification only when the latest stable Release is **higher than the installed version**;
+- remain silent when already up to date, when the remote version is not higher, when the network request fails, or when version information cannot be parsed;
+- allow manual checks at any time through **Help → Update Software**;
+- download the official Release DMG inside SVMM with visible progress;
+- when GitHub provides a SHA-256 asset digest, verify the downloaded file locally and delete it if the digest does not match;
+- allow macOS to open the verified disk image;
+- **not automatically replace SVMM in `/Applications` or complete installation**;
+- keep the GitHub Release page available as a fallback download path.
 
 ### Settings
 
@@ -249,7 +282,7 @@ Use only distribution channels explicitly identified by the developer. **Do not 
 
 ## macOS Security Notice
 
-SVMM v1.0.0 is independently distributed through GitHub. The current release build is **not signed with an Apple Developer ID certificate and is not Apple-notarized**.
+SVMM is independently distributed through GitHub. The current official GitHub release build is **not signed with an Apple Developer ID certificate and is not Apple-notarized**.
 
 macOS Gatekeeper may therefore warn on first launch that it cannot verify the developer or check the application for malicious software.
 
@@ -269,7 +302,7 @@ Download only from this repository's official Release page and verify the SHA-25
 
 ## Current Release Notes & Known Issues
 
-SVMM 1.0.0 is the first public release. Confirmed environment-dependent behavior and current boundaries include:
+SVMM 1.1.0 is a feature and maintenance update over 1.0.0. See [RELEASE-NOTES-v1.1.0.md](RELEASE-NOTES-v1.1.0.md) and [CHANGELOG.md](CHANGELOG.md) for the full change summary. Confirmed environment-dependent behavior and current boundaries include:
 
 - **Categories is less responsive on macOS 15.0 than on newer systems** in the current VM test environment. First entry and some selection interactions can be slower, while core functionality remains usable and no related data-integrity issue has been identified. macOS 26.0 and 27.0 tests are smooth.
 - **The Help menu may briefly change on macOS beta/seed builds** when macOS injects a Feedback Assistant item. This is system behavior and does not affect SVMM management data.
@@ -289,6 +322,7 @@ See [KNOWN-ISSUES.md](KNOWN-ISSUES.md) for the maintained list.
 - [隐私政策](PRIVACY.md) · [Privacy Policy](PRIVACY.en.md)
 - [软件许可协议](SOFTWARE-LICENSE.md) · [Software License Agreement](SOFTWARE-LICENSE.en.md)
 - [Changelog](CHANGELOG.md)
+- [v1.1.0 Release Notes](RELEASE-NOTES-v1.1.0.md)
 
 ## Privacy
 
@@ -296,7 +330,7 @@ SVMM follows a **local-first** model.
 
 The current version does not operate an SVMM account service, advertising system, behavior analytics SDK, telemetry backend, or developer-controlled server for receiving users' Mods, saves, or SVMM management databases.
 
-Some optional features communicate directly with services such as SMAPI, Nexus Mods, GitHub, and related download infrastructure. Nexus API credentials are stored in the macOS Keychain.
+Some features communicate directly with services such as SMAPI, Nexus Mods, GitHub, and related download infrastructure. v1.1.0 can query GitHub Releases at launch and, when the user explicitly requests it, download an official Release DMG directly. Nexus API credentials are stored in the macOS Keychain.
 
 See [Privacy Policy](PRIVACY.en.md).
 

@@ -2,7 +2,7 @@
 
 # Stardew Valley Mod Manager 使用手册
 
-适用版本：Stardew Valley Mod Manager 1.0.0 及后续版本，直至本手册更新。
+适用版本：Stardew Valley Mod Manager 1.1.0 及后续版本，直至本手册更新。
 
 Stardew Valley Mod Manager（SVMM）是一款 macOS 本地 Mod 管理工具。它读取并管理您现有的 Stardew Valley Mods，不为游戏创建另一套平行 Mod 环境。多数管理数据保存在本机。
 
@@ -84,7 +84,7 @@ Mod 库是主要管理区域。卡片和列表只改变展示方式，不会产�
 - 可与普通备注一起导入、导出和备份。
 
 <p align="center">
-  <img src="docs/images/zh-CN/mod-name-note.png" alt="Mod 名称备注" width="72%">
+  <img src="docs/images/zh-CN/mod-name-note.png" alt="Mod 名称备注与详细信息面板" width="52%">
 </p>
 
 ### 多选
@@ -94,11 +94,32 @@ Mod 库是主要管理区域。卡片和列表只改变展示方式，不会产�
 - ⇧ + 单击：连续范围
 - ⌘A：全选当前列表
 
+### Manifest Editor
+
+从 v1.1.0 起，可以在 Mod 库或分类页面对单个 Mod 使用“编辑 manifest…”打开 Manifest Editor。
+
+结构化模式支持常见字段：
+
+- `Name`、`Author`、`Version`、`UniqueID`、`Description`；
+- `EntryDll`；
+- `MinimumApiVersion`、`MinimumGameVersion`；
+- `UpdateKeys`；
+- `Dependencies`；
+- `ContentPackFor`。
+
+需要直接检查或修改完整 JSON 时，可以切换到原始 JSON 模式。保存前会重新验证内容，保存成功后 SVMM 会重新扫描 Mods。结构化写回基于完整 JSON 对象，尽量保留与本次修改无关的未知字段。
+
+Manifest Editor 修改的是 Mod 自己的真实 `manifest.json`。它与“名称备注”和“用户更新来源覆盖”是不同功能。修改 Unique ID、依赖或其他关键字段可能改变 SMAPI 与其他 Mod 对该 Mod 的识别关系，因此应以 Mod 作者的真实发布信息为依据。
+
+<p align="center">
+  <img src="docs/images/zh-CN/manifest-editor.png" alt="Manifest Editor" width="92%">
+</p>
+
 ## 分类与配置方案
 
 ### 分类
 
-分类回答“怎么整理”。系统默认分类可作为只读参考；用户方案可以新增类目并调整 Mod 分类。
+分类回答“怎么整理”。系统默认分类可作为只读参考；用户方案可以新增类目并调整 Mod 分类。v1.1.0 的分类页面支持搜索，自动分类规则也进行了扩充；无法可靠判断的 Mod 仍会保持“未识别”。
 
 <p align="center">
   <img src="docs/images/zh-CN/categories.png" alt="分类" width="96%">
@@ -165,6 +186,44 @@ SVMM 会读取 Manifest 的依赖声明，并区分缺失、已安装但停用�
 对于包含多个必需 Mod 的依赖 ZIP，只有在能够证明它们属于同一 bundled package 时才会按一个事务安装。RAR / 7z 当前不进入自动安装流程。
 
 SVMM 不递归自动安装无限依赖树。新安装依赖如果还有自己的依赖，请重新扫描后再次检查。
+
+## SVMM 软件更新
+
+SVMM 1.1.0 起可以检查和下载 **SVMM 自身**的新版本，这与 Mod 更新是两套不同流程。
+
+### 启动自动检查
+
+应用启动后会静默查询官方 GitHub Releases 的最新正式版本。
+
+- 最新版本高于当前安装版本：显示更新提示；
+- 最新版本等于当前版本：不弹窗；
+- 最新版本低于当前版本：不弹窗；
+- 网络失败、API 返回异常或版本信息无法解析：启动检查保持静默。
+
+### 手动检查
+
+随时可以使用：
+
+**帮助 → 更新软件**
+
+手动窗口会显示当前安装版本、最新正式版本，以及检查失败等状态。
+
+### App 内下载
+
+发现新版本后，可以直接在更新窗口中选择“下载更新”。
+
+SVMM 会：
+
+1. 从官方 GitHub Release 下载对应 DMG；
+2. 在应用自己的本地缓存位置保存文件；
+3. 显示下载进度；
+4. 如果 GitHub Release Asset 提供 SHA-256 digest，在本地计算并校验；
+5. 校验不一致时删除下载文件并停止；
+6. 下载成功后提供“打开安装镜像”。
+
+当前版本不会自动覆盖 `/Applications` 中正在使用的 SVMM，也不会自动完成安装。打开 DMG 后，仍由用户按照正常 macOS 安装方式完成版本替换。
+
+“打开下载页面”继续保留为备用方式。
 
 ## 设置、存储与备份
 

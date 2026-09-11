@@ -2,7 +2,7 @@
 
 # Stardew Valley Mod Manager User Manual
 
-Applies to Stardew Valley Mod Manager 1.0.0 and later versions until this manual is updated.
+Applies to Stardew Valley Mod Manager 1.1.0 and later versions until this manual is updated.
 
 Stardew Valley Mod Manager (SVMM) is a local Mod-management application for macOS. It manages the Stardew Valley Mods you already use rather than creating a second parallel Mod environment. Most management data remains on your Mac.
 
@@ -94,11 +94,28 @@ A display-name note is a local label that helps you identify a Mod in language o
 - ⇧ + Click: contiguous range
 - ⌘A: select all in the current list
 
+### Manifest Editor
+
+Starting with v1.1.0, use **Edit manifest…** for a single Mod from the Mod Library or Categories page to open the Manifest Editor.
+
+Structured mode supports common fields including:
+
+- `Name`, `Author`, `Version`, `UniqueID`, and `Description`;
+- `EntryDll`;
+- `MinimumApiVersion` and `MinimumGameVersion`;
+- `UpdateKeys`;
+- `Dependencies`;
+- `ContentPackFor`.
+
+Switch to Raw JSON when you need to inspect or edit the complete object directly. SVMM validates the content before saving and rescans Mods after a successful save. Structured writes are based on the full JSON object and preserve unrelated unknown fields where possible.
+
+The Manifest Editor modifies the Mod's actual `manifest.json`. It is separate from display-name notes and user update-source overrides. Changing Unique IDs, dependencies, or other identity-critical fields can affect how SMAPI and other Mods identify the Mod, so edits should be based on the author's actual release information.
+
 ## Categories & Profiles
 
 ### Categories
 
-Categories answer “how should these Mods be organized?” The system default scheme is a read-only reference; user schemes can add categories and manual assignments.
+Categories answer “how should these Mods be organized?” The system default scheme is a read-only reference; user schemes can add categories and manual assignments. v1.1.0 adds search to the Categories page and expands conservative automatic classification; Mods that cannot be classified reliably remain unrecognized.
 
 <p align="center">
   <img src="docs/images/en/categories.png" alt="Categories" width="96%">
@@ -165,6 +182,44 @@ SVMM reads Manifest dependency declarations and distinguishes missing, installed
 A dependency ZIP containing several Mods is installed as one transaction only when SVMM can validate that they belong to the same bundled package. RAR and 7z are not currently part of the automatic-install flow.
 
 SVMM does not recursively install an unlimited dependency tree. Rescan and review dependency status after newly installing dependencies.
+
+## SVMM Software Updates
+
+Starting with SVMM 1.1.0, SVMM can check for and download new versions of **SVMM itself**. This is separate from Mod updating.
+
+### Automatic Launch Check
+
+After launch, SVMM silently queries the latest stable Release from the official GitHub Releases feed.
+
+- latest version is higher than the installed version: show an update notification;
+- latest version equals the installed version: no launch notification;
+- latest version is lower than the installed version: no launch notification;
+- network/API/version-parsing failure: the launch check remains silent.
+
+### Manual Check
+
+Use:
+
+**Help → Update Software**
+
+The manual update window shows the installed version, latest stable version, and explicit failure states when a user asks for a check.
+
+### In-App Download
+
+When a new version is available, choose **Download Update** in the update window.
+
+SVMM will:
+
+1. download the corresponding DMG from the official GitHub Release;
+2. save it in an application-owned local cache location;
+3. show download progress;
+4. when GitHub provides a SHA-256 asset digest, calculate and verify it locally;
+5. delete the downloaded file and stop if verification fails;
+6. offer **Open Disk Image** after a successful download.
+
+The current version does not automatically overwrite SVMM in `/Applications` and does not complete installation automatically. After opening the DMG, the user completes the normal macOS replacement/install flow.
+
+**Open Download Page** remains available as a fallback.
 
 ## Settings, Storage & Backups
 

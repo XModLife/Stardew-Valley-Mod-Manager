@@ -11,7 +11,7 @@
 
 <p align="center">
   <img alt="最低系统" src="https://img.shields.io/badge/最低系统-macOS%2015.0%2B-111111?logo=apple&logoColor=white">
-  <img alt="版本" src="https://img.shields.io/badge/版本-1.0.0-0969da">
+  <img alt="版本" src="https://img.shields.io/badge/版本-1.1.0-0969da">
   <img alt="架构" src="https://img.shields.io/badge/架构-Universal%202-555555">
   <img alt="语言" src="https://img.shields.io/badge/语言-简体中文%20%7C%20English-8250df">
   <img alt="数据" src="https://img.shields.io/badge/数据-本地优先-1a7f37">
@@ -52,7 +52,7 @@ SVMM 重点关注：
 - **中文友好与可本地化**：简体中文优先维护，同时提供 English；名称备注可以把难以记忆或不熟悉语言的 Mod 名称转换为自己易理解的本地备注。
 - **原生 macOS 体验**：Sidebar、Toolbar、菜单、窗口、快捷键，以及与 Finder 使用习惯相匹配的交互。
 - **本地优先（Local-first）**：核心 Mod 管理数据保存在用户自己的 Mac 上。
-- **实用组织与维护能力**：名称备注、分类、配置方案、Manifest 编辑、扫描诊断、依赖与更新流程集中在一个桌面应用中。
+- **实用组织与维护能力**：名称备注、分类、配置方案、Manifest 编辑、扫描诊断、依赖、Mod 更新与 SVMM 软件自更新流程集中在一个桌面应用中。
 - **保守的文件事务**：受支持的更新与依赖安装会进行结构与身份校验，并尽可能执行备份、配置保留与失败回滚。
 - **单一跨版本代码库**：当前正式版本以 macOS 15.0 为最低部署目标，并在较新 macOS 版本继续使用适合的新系统能力。
 
@@ -141,6 +141,8 @@ SVMM 重点关注：
 
 分类负责“怎么整理”。系统默认分类方案提供只读参考，用户也可以创建自己的分类方案并调整 Mod 所属类目。
 
+v1.1.0 的分类页面新增搜索，同时扩充了 UI、服饰、家具、装饰物、地图、工具与环境等高置信度自动分类规则。无法可靠判断时，SVMM 仍会保留“未识别”，而不是强行分类。
+
 <p align="center">
   <img src="docs/images/zh-CN/categories.png" alt="分类" width="96%">
 </p>
@@ -204,6 +206,20 @@ SVMM 会读取 Manifest 中的依赖声明，区分缺失、已停用、版本�
 </p>
 
 对于作者以多个必需组件共同打包的依赖 ZIP，SVMM 同样采用 bundled package 校验与单事务安装策略，而不是简单因为存在多个 `manifest.json` 就拒绝。
+
+### SVMM 软件更新
+
+SVMM 1.1.0 起提供应用自身的更新检查与下载流程：
+
+- 启动时静默检查官方 GitHub Releases；
+- 只有检测到**高于当前安装版本**的正式版本时才显示更新提示；
+- 已是最新版、远端版本不高于当前版本、网络失败或版本解析失败时，启动自动检查保持静默；
+- 也可以随时通过“帮助 → 更新软件”手动检查；
+- 有新版本时，可直接在 SVMM 内下载官方 Release 的 DMG，并查看下载进度；
+- GitHub Release Asset 提供 SHA-256 digest 时，会在本地校验下载文件；不一致时删除文件并停止后续打开；
+- 校验成功后可以让 macOS 打开安装镜像；
+- 当前版本**不会自动覆盖 `/Applications` 中的 SVMM，也不会自动完成安装**；
+- GitHub Release 页面仍保留为备用下载入口。
 
 ### 设置
 
@@ -275,7 +291,7 @@ SVMM 的界面文本已经采用本地化资源 / String Catalog 架构组织，
 
 ## macOS 安全提示
 
-SVMM v1.0.0 通过 GitHub 独立分发。当前发布包**未使用 Apple Developer ID 证书签名，也未经过 Apple Notarization（公证）**。
+SVMM 当前通过 GitHub 独立分发。当前官方 GitHub 发行包**未使用 Apple Developer ID 证书签名，也未经过 Apple Notarization（公证）**。
 
 因此，从互联网下载后首次启动时，macOS Gatekeeper 可能提示无法验证开发者或无法检查该 App 是否包含恶意软件。
 
@@ -295,7 +311,7 @@ SVMM v1.0.0 通过 GitHub 独立分发。当前发布包**未使用 Apple Develo
 
 ## 当前版本说明与已知问题
 
-SVMM 1.0.0 是首次公开发行版本。当前已经确认的主要环境差异与边界包括：
+SVMM 1.1.0 是在 1.0.0 基础上的功能与维护更新。详细变更见 [RELEASE-NOTES-v1.1.0.md](RELEASE-NOTES-v1.1.0.md) 与 [CHANGELOG.md](CHANGELOG.md)。当前已经确认的主要环境差异与边界包括：
 
 - **macOS 15.0 分类页面响应速度较新系统慢**：在当前虚拟机测试中，首次进入分类以及部分行选择操作存在更明显延迟；功能可用，未发现因此导致的数据损坏。macOS 26.0 与 macOS 27.0 测试流畅。
 - **macOS beta / seed 的“帮助”菜单可能短暂变化**：系统可能动态注入 Feedback Assistant 项目，这是 macOS 行为，不影响 SVMM 核心数据。
@@ -315,6 +331,7 @@ SVMM 1.0.0 是首次公开发行版本。当前已经确认的主要环境差异
 - [隐私政策](PRIVACY.md) · [Privacy Policy](PRIVACY.en.md)
 - [软件许可协议](SOFTWARE-LICENSE.md) · [Software License Agreement](SOFTWARE-LICENSE.en.md)
 - [更新记录](CHANGELOG.md)
+- [v1.1.0 发布说明](RELEASE-NOTES-v1.1.0.md)
 
 ## 隐私
 
@@ -322,7 +339,7 @@ SVMM 采用**本地优先（Local-first）**模式。
 
 当前版本不提供 SVMM 用户账户系统，不包含广告系统、用户行为分析 SDK 或遥测后台，也不运营用于接收用户 Mods、存档或 SVMM 管理数据库的开发者服务器。
 
-部分可选功能会直接访问 SMAPI、Nexus Mods、GitHub 及相关下载基础设施。Nexus API 凭据保存在 macOS 钥匙串（Keychain）中。
+部分功能会直接访问 SMAPI、Nexus Mods、GitHub 及相关下载基础设施。v1.1.0 可在启动时查询 GitHub Releases，并在用户主动操作时直接下载官方 Release DMG。Nexus API 凭据保存在 macOS 钥匙串（Keychain）中。
 
 完整内容请参阅 [隐私政策](PRIVACY.md)。
 
