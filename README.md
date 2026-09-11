@@ -380,4 +380,4 @@ Stardew Valley、ConcernedApe 相关内容、SMAPI、Nexus Mods、第三方 Mods
 **开发者：** 李薇（Li Wei）  
 **邮箱：** SVMM@npccare.cn
 
-<p align="center"><sub>图标说明：SVMM 图标中的游戏人物服饰使用了第三方 Mod：<a href="https://www.nexusmods.com/stardewvalley/mods/13682">13682</a> · <a href="https://www.nexusmods.com/stardewvalley/mods/10102">10102</a>。相关内容版权归各自作者所有。</sub></p>
+<p align="center"><sub>图标说明：SVMM 图标中的游戏人物服饰使用了第三方 Mod：<a href="https://www.nexusmods.com/stardewvalley/mods/13682">13682</a> · <a href="https://www.nexusmods.com/stardewvalley/mods/10102">10102</a> · <a href="https://www.nexusmods.com/stardewvalley/mods/11724">11724</a>。相关内容版权归各自作者所有。</sub></p>

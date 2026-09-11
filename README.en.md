@@ -369,4 +369,4 @@ Unless explicitly stated otherwise by the relevant rights holder, SVMM **is not 
 **Developer:** Li Wei（李薇）  
 **Email:** SVMM@npccare.cn
 
-<p align="center"><sub>Icon note: the in-game character outfit shown in the SVMM icon uses third-party Mods: <a href="https://www.nexusmods.com/stardewvalley/mods/13682">13682</a> · <a href="https://www.nexusmods.com/stardewvalley/mods/10102">10102</a>. Rights remain with their respective authors.</sub></p>
+<p align="center"><sub>Icon note: the in-game character outfit shown in the SVMM icon uses third-party Mods: <a href="https://www.nexusmods.com/stardewvalley/mods/13682">13682</a> · <a href="https://www.nexusmods.com/stardewvalley/mods/10102">10102</a> · <a href="https://www.nexusmods.com/stardewvalley/mods/11724">11724</a>. Rights remain with their respective authors.</sub></p>
