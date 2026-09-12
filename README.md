@@ -11,7 +11,7 @@
 
 <p align="center">
   <img alt="最低系统" src="https://img.shields.io/badge/最低系统-macOS%2015.0%2B-111111?logo=apple&logoColor=white">
-  <img alt="版本" src="https://img.shields.io/badge/版本-1.2.0-0969da">
+  <img alt="版本" src="https://img.shields.io/badge/版本-1.2.1-0969da">
   <img alt="架构" src="https://img.shields.io/badge/架构-Universal%202-555555">
   <img alt="语言" src="https://img.shields.io/badge/语言-简体中文%20%7C%20English-8250df">
   <img alt="数据" src="https://img.shields.io/badge/数据-本地优先-1a7f37">
@@ -219,17 +219,20 @@ SVMM 会读取 Manifest 中的依赖声明，区分缺失、已停用、版本�
 
 ### SVMM 软件更新
 
-SVMM 1.1.0 起提供应用自身的更新检查与下载流程：
+SVMM 1.1.0 起提供应用自身的更新检查与下载流程；v1.2.1 修正了 App Sandbox 下更新 DMG 的保存方式：
 
 - 启动时静默检查官方 GitHub Releases；
 - 只有检测到**高于当前安装版本**的正式版本时才显示更新提示；
 - 已是最新版、远端版本不高于当前版本、网络失败或版本解析失败时，启动自动检查保持静默；
 - 也可以随时通过“帮助 → 更新软件”手动检查；
-- 有新版本时，可直接在 SVMM 内下载官方 Release 的 DMG，并查看下载进度；
-- GitHub Release Asset 提供 SHA-256 digest 时，会在本地校验下载文件；不一致时删除文件并停止后续打开；
+- 有新版本时，点击“下载更新”会先显示 macOS 原生保存面板，由用户明确选择 DMG 的保存位置；
+- SVMM 随后继续在应用内下载，并显示实时下载进度；
+- GitHub Release Asset 提供 SHA-256 digest 时，会在本地校验下载文件；不一致时删除该下载文件并停止后续打开；
 - 校验成功后可以让 macOS 打开安装镜像；
 - 当前版本**不会自动覆盖 `/Applications` 中的 SVMM，也不会自动完成安装**；
 - GitHub Release 页面仍保留为备用下载入口。
+
+> **v1.2.0 → v1.2.1 一次性升级说明：** v1.2.0 本身仍使用旧版更新下载器。在部分 macOS 环境中，由 v1.2.0 内置下载器取得的 DMG 可能被 App Sandbox 标记为不可执行来源。请从 v1.2.0 的“打开下载页面”进入官方 GitHub Release，并通过浏览器下载 v1.2.1。安装 v1.2.1 后，后续软件内下载将使用新的用户授权保存流程。
 
 ### 设置
 
@@ -321,8 +324,9 @@ SVMM 当前通过 GitHub 独立分发。当前官方 GitHub 发行包**未使用
 
 ## 当前版本说明与已知问题
 
-SVMM 1.2.0 是一次配置方案体验与自动分类能力更新。详细变更见 [RELEASE-NOTES-v1.2.0.md](RELEASE-NOTES-v1.2.0.md) 与 [CHANGELOG.md](CHANGELOG.md)。当前已经确认的主要环境差异与边界包括：
+SVMM 1.2.1 是一次软件自更新下载流程的维护修复。详细变更见 [RELEASE-NOTES-v1.2.1.md](RELEASE-NOTES-v1.2.1.md) 与 [CHANGELOG.md](CHANGELOG.md)。当前已经确认的主要环境差异与边界包括：
 
+- **v1.2.0 → v1.2.1 请使用浏览器完成这一次升级**：v1.2.0 的旧版内置下载器可能产生 App Sandbox hard quarantine；安装 v1.2.1 后，后续软件内下载改为 macOS 保存面板授权流程。
 - **macOS 15.0 分类页面响应速度较新系统慢**：在当前虚拟机测试中，首次进入分类以及部分行选择操作存在更明显延迟；功能可用，未发现因此导致的数据损坏。macOS 26.0 与 macOS 27.0 测试流畅。
 - **macOS beta / seed 的“帮助”菜单可能短暂变化**：系统可能动态注入 Feedback Assistant 项目，这是 macOS 行为，不影响 SVMM 核心数据。
 - **非标准第三方 Mod 包仍可能需要人工判断**：SVMM 会尽量验证 Manifest、Unique ID、依赖与文件结构，但不会对无法可靠证明安全的包进行猜测式安装。
@@ -341,6 +345,7 @@ SVMM 1.2.0 是一次配置方案体验与自动分类能力更新。详细变更
 - [隐私政策](PRIVACY.md) · [Privacy Policy](PRIVACY.en.md)
 - [软件许可协议](SOFTWARE-LICENSE.md) · [Software License Agreement](SOFTWARE-LICENSE.en.md)
 - [更新记录](CHANGELOG.md)
+- [v1.2.1 发布说明](RELEASE-NOTES-v1.2.1.md)
 - [v1.2.0 发布说明](RELEASE-NOTES-v1.2.0.md)
 - [v1.1.0 发布说明](RELEASE-NOTES-v1.1.0.md)
 
@@ -350,7 +355,7 @@ SVMM 采用**本地优先（Local-first）**模式。
 
 当前版本不提供 SVMM 用户账户系统，不包含广告系统、用户行为分析 SDK 或遥测后台，也不运营用于接收用户 Mods、存档或 SVMM 管理数据库的开发者服务器。
 
-部分功能会直接访问 SMAPI、Nexus Mods、GitHub 及相关下载基础设施。v1.1.0 可在启动时查询 GitHub Releases，并在用户主动操作时直接下载官方 Release DMG。Nexus API 凭据保存在 macOS 钥匙串（Keychain）中。
+部分功能会直接访问 SMAPI、Nexus Mods、GitHub 及相关下载基础设施。SVMM 可在启动时查询 GitHub Releases，并在用户主动操作时直接下载官方 Release DMG。自 v1.2.1 起，软件更新 DMG 的保存位置由用户通过 macOS 原生保存面板明确选择；新增的 user-selected executable 沙盒权限只用于这一用户授权的更新文件保存流程。Nexus API 凭据保存在 macOS 钥匙串（Keychain）中。
 
 完整内容请参阅 [隐私政策](PRIVACY.md)。
 

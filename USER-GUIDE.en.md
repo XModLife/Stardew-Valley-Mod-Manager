@@ -2,7 +2,7 @@
 
 # Stardew Valley Mod Manager User Manual
 
-Applies to Stardew Valley Mod Manager 1.2.0 and later versions until this manual is updated.
+Applies to Stardew Valley Mod Manager 1.2.1 and later versions until this manual is updated.
 
 Stardew Valley Mod Manager (SVMM) is a local Mod-management application for macOS. It manages the Stardew Valley Mods you already use rather than creating a second parallel Mod environment. Most management data remains on your Mac.
 
@@ -223,16 +223,20 @@ The manual update window shows the installed version, latest stable version, and
 
 When a new version is available, choose **Download Update** in the update window.
 
-SVMM will:
+Starting with v1.2.1, software-update downloads use a destination explicitly authorized by the user:
 
-1. download the corresponding DMG from the official GitHub Release;
-2. save it in an application-owned local cache location;
-3. show download progress;
-4. when GitHub provides a SHA-256 asset digest, calculate and verify it locally;
-5. delete the downloaded file and stop if verification fails;
-6. offer **Open Disk Image** after a successful download.
+1. after **Download Update** is selected, macOS first presents the native Save panel;
+2. the user explicitly chooses the DMG file name and destination;
+3. SVMM downloads the corresponding DMG from the official GitHub Release and shows progress;
+4. when GitHub provides a SHA-256 asset digest, SVMM calculates and verifies it locally;
+5. if verification fails, SVMM deletes that downloaded file and stops;
+6. after a successful download, SVMM offers **Open Disk Image**.
+
+This change prevents App Sandbox from treating an update DMG created in the background as executable content without explicit user authorization. SVMM remains sandboxed; the added user-selected executable entitlement is limited to software-update files explicitly selected through the macOS Save panel.
 
 The current version does not automatically overwrite SVMM in `/Applications` and does not complete installation automatically. After opening the DMG, the user completes the normal macOS replacement/install flow.
+
+> **One-time note for v1.2.0 users:** v1.2.0 itself still contains the old downloader. For the v1.2.0 → v1.2.1 upgrade, select **Open Download Page** and obtain the official v1.2.1 DMG through your browser. After v1.2.1 is installed, later in-app downloads use the new workflow above.
 
 **Open Download Page** remains available as a fallback.
 

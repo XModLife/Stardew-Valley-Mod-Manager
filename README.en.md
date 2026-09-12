@@ -11,7 +11,7 @@
 
 <p align="center">
   <img alt="Minimum macOS" src="https://img.shields.io/badge/Minimum%20macOS-15.0%2B-111111?logo=apple&logoColor=white">
-  <img alt="Version" src="https://img.shields.io/badge/Version-1.2.0-0969da">
+  <img alt="Version" src="https://img.shields.io/badge/Version-1.2.1-0969da">
   <img alt="Architecture" src="https://img.shields.io/badge/Architecture-Universal%202-555555">
   <img alt="Languages" src="https://img.shields.io/badge/Languages-Simplified%20Chinese%20%7C%20English-8250df">
   <img alt="Data" src="https://img.shields.io/badge/Data-Local--first-1a7f37">
@@ -218,17 +218,20 @@ For dependency ZIPs that contain multiple required components, SVMM likewise use
 
 ### SVMM Software Updates
 
-Starting with SVMM 1.1.0, the application includes its own update-check and download workflow:
+Starting with SVMM 1.1.0, the application includes its own update-check and download workflow. v1.2.1 changes how update DMGs are saved under App Sandbox:
 
 - silently check the official GitHub Releases feed at launch;
 - show an update notification only when the latest stable Release is **higher than the installed version**;
 - remain silent when already up to date, when the remote version is not higher, when the network request fails, or when version information cannot be parsed;
 - allow manual checks at any time through **Help → Update Software**;
-- download the official Release DMG inside SVMM with visible progress;
+- when a newer version is available, **Download Update** first presents the native macOS Save panel so the user explicitly chooses where the DMG is saved;
+- continue the download inside SVMM with visible progress;
 - when GitHub provides a SHA-256 asset digest, verify the downloaded file locally and delete it if the digest does not match;
 - allow macOS to open the verified disk image;
 - **not automatically replace SVMM in `/Applications` or complete installation**;
 - keep the GitHub Release page available as a fallback download path.
+
+> **One-time v1.2.0 → v1.2.1 upgrade note:** v1.2.0 itself still contains the old update downloader. On some macOS environments, a DMG obtained through that old in-app downloader can be marked by App Sandbox as non-executable content. From v1.2.0, use **Open Download Page** and download v1.2.1 through your browser. After v1.2.1 is installed, future in-app downloads use the new user-authorized Save-panel workflow.
 
 ### Settings
 
@@ -318,8 +321,9 @@ Download only from this repository's official Release page and verify the SHA-25
 
 ## Current Release Notes & Known Issues
 
-SVMM 1.2.0 is a Profiles-experience and automatic-classification update. See [RELEASE-NOTES-v1.2.0.md](RELEASE-NOTES-v1.2.0.md) and [CHANGELOG.md](CHANGELOG.md) for the full change summary. Confirmed environment-dependent behavior and current boundaries include:
+SVMM 1.2.1 is a maintenance release for the software-update download workflow. See [RELEASE-NOTES-v1.2.1.md](RELEASE-NOTES-v1.2.1.md) and [CHANGELOG.md](CHANGELOG.md) for the full change summary. Confirmed environment-dependent behavior and current boundaries include:
 
+- **Use the browser for the one-time v1.2.0 → v1.2.1 upgrade.** The old v1.2.0 in-app downloader can produce an App Sandbox hard-quarantine state. After installing v1.2.1, future in-app downloads use the native macOS Save-panel authorization flow.
 - **Categories is less responsive on macOS 15.0 than on newer systems** in the current VM test environment. First entry and some selection interactions can be slower, while core functionality remains usable and no related data-integrity issue has been identified. macOS 26.0 and 27.0 tests are smooth.
 - **The Help menu may briefly change on macOS beta/seed builds** when macOS injects a Feedback Assistant item. This is system behavior and does not affect SVMM management data.
 - **Unusual third-party Mod packages can still require manual review.** SVMM validates manifests, Unique IDs, dependencies, and package structure and will not guess when a safe transaction cannot be established.
@@ -338,6 +342,7 @@ See [KNOWN-ISSUES.md](KNOWN-ISSUES.md) for the maintained list.
 - [隐私政策](PRIVACY.md) · [Privacy Policy](PRIVACY.en.md)
 - [软件许可协议](SOFTWARE-LICENSE.md) · [Software License Agreement](SOFTWARE-LICENSE.en.md)
 - [Changelog](CHANGELOG.md)
+- [v1.2.1 Release Notes](RELEASE-NOTES-v1.2.1.md)
 - [v1.2.0 Release Notes](RELEASE-NOTES-v1.2.0.md)
 - [v1.1.0 Release Notes](RELEASE-NOTES-v1.1.0.md)
 
@@ -347,7 +352,7 @@ SVMM follows a **local-first** model.
 
 The current version does not operate an SVMM account service, advertising system, behavior analytics SDK, telemetry backend, or developer-controlled server for receiving users' Mods, saves, or SVMM management databases.
 
-Some features communicate directly with services such as SMAPI, Nexus Mods, GitHub, and related download infrastructure. v1.1.0 can query GitHub Releases at launch and, when the user explicitly requests it, download an official Release DMG directly. Nexus API credentials are stored in the macOS Keychain.
+Some features communicate directly with services such as SMAPI, Nexus Mods, GitHub, and related download infrastructure. SVMM can query GitHub Releases at launch and, when the user explicitly requests it, download an official Release DMG directly. Starting with v1.2.1, the update-DMG destination is explicitly selected by the user through the native macOS Save panel; the added user-selected executable sandbox entitlement is used only for this user-authorized update-file workflow. Nexus API credentials are stored in the macOS Keychain.
 
 See [Privacy Policy](PRIVACY.en.md).
 

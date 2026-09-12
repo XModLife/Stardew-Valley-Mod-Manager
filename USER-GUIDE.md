@@ -2,7 +2,7 @@
 
 # Stardew Valley Mod Manager 使用手册
 
-适用版本：Stardew Valley Mod Manager 1.2.0 及后续版本，直至本手册更新。
+适用版本：Stardew Valley Mod Manager 1.2.1 及后续版本，直至本手册更新。
 
 Stardew Valley Mod Manager（SVMM）是一款 macOS 本地 Mod 管理工具。它读取并管理您现有的 Stardew Valley Mods，不为游戏创建另一套平行 Mod 环境。多数管理数据保存在本机。
 
@@ -227,16 +227,20 @@ SVMM 1.1.0 起可以检查和下载 **SVMM 自身**的新版本，这与 Mod 更
 
 发现新版本后，可以直接在更新窗口中选择“下载更新”。
 
-SVMM 会：
+从 v1.2.1 起，软件更新下载使用用户明确授权的保存位置：
 
-1. 从官方 GitHub Release 下载对应 DMG；
-2. 在应用自己的本地缓存位置保存文件；
-3. 显示下载进度；
-4. 如果 GitHub Release Asset 提供 SHA-256 digest，在本地计算并校验；
-5. 校验不一致时删除下载文件并停止；
+1. 点击“下载更新”后，macOS 会先显示原生保存面板；
+2. 用户明确选择 DMG 文件名与保存位置；
+3. SVMM 从官方 GitHub Release 下载对应 DMG，并显示下载进度；
+4. 如果 GitHub Release Asset 提供 SHA-256 digest，SVMM 会在本地计算并校验；
+5. 校验不一致时删除本次下载文件并停止；
 6. 下载成功后提供“打开安装镜像”。
 
+这一变化用于避免 App Sandbox 把由应用后台创建的软件更新 DMG 标记为缺少明确用户授权的可执行内容。SVMM 继续保留 Sandbox；新增的 user-selected executable 权限只作用于用户通过 macOS 保存面板明确选择的软件更新文件位置。
+
 当前版本不会自动覆盖 `/Applications` 中正在使用的 SVMM，也不会自动完成安装。打开 DMG 后，仍由用户按照正常 macOS 安装方式完成版本替换。
+
+> **v1.2.0 用户的一次性升级说明：** v1.2.0 自身仍使用旧版下载器，因此从 v1.2.0 升级到 v1.2.1 时，请点击“打开下载页面”，通过浏览器获取官方 v1.2.1 DMG。安装 v1.2.1 后，后续版本的软件内下载将使用上述新流程。
 
 “打开下载页面”继续保留为备用方式。
 

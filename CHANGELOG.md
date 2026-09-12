@@ -1,5 +1,53 @@
 # 更新记录 / Changelog
 
+## 1.2.1 — 2026-09-12
+
+v1.2.1 是一次软件自更新下载流程的维护修复，重点解决 v1.2.0 在 App Sandbox 环境下通过应用内下载更新 DMG 后，安装镜像中的 App 可能无法正常打开的问题。
+
+### 软件更新修复
+
+- 修复由 SVMM 旧版内置下载器保存 DMG 时可能触发的 App Sandbox hard quarantine；
+- “下载更新”现在先显示 macOS 原生 `NSSavePanel`，由用户明确选择 DMG 的保存位置；
+- 增加 `com.apple.security.files.user-selected.executable` entitlement，用于用户通过系统保存面板明确授权的软件更新文件；
+- 不再把软件更新 DMG 自动保存到 App 自己的 `Caches/SoftwareUpdates`；
+- 下载完成时重新在用户选择的目标位置创建文件并写入下载内容，避免把 URLSession 临时文件的隔离扩展属性直接复制到最终 DMG；
+- 保留应用内实时下载进度；
+- 保留 GitHub Release Asset SHA-256 digest 的本地校验；
+- 校验失败时继续删除错误下载文件并停止打开；
+- 校验成功后继续提供“打开安装镜像”；
+- “重新检查更新”不再删除用户已经明确保存到自己位置的 DMG；
+- SVMM 仍不会自动覆盖 `/Applications` 中正在运行的 App，也不会自动完成安装。
+
+### v1.2.0 → v1.2.1 升级说明
+
+- v1.2.0 自身仍包含旧版下载器，因此无法反向获得 v1.2.1 的修复；
+- 从 v1.2.0 升级到 v1.2.1 时，请使用“打开下载页面”并通过浏览器下载官方 v1.2.1 DMG；
+- 安装 v1.2.1 后，后续版本的软件内下载将使用新的用户授权保存流程。
+
+### 发布信息
+
+- 软件版本更新为 **1.2.1（Build 4）**；
+- 最低系统继续为 **macOS 15.0**；
+- 正式构建继续提供 **Universal 2（arm64 + x86_64）**；
+- App Sandbox 继续启用；
+- 隐私政策继续使用 **1.1 / 2026-09-11**；
+- 软件许可协议继续使用 **1.0 / 2026-09-10**。
+
+### English Summary
+
+Version 1.2.1 fixes the in-app software-update download path under macOS App Sandbox:
+
+- update downloads now begin with the native macOS Save panel so the user explicitly chooses the DMG destination;
+- the app adds the user-selected executable entitlement for that explicitly authorized update file;
+- update DMGs are no longer automatically stored in the app-owned `Caches/SoftwareUpdates` directory;
+- download progress and GitHub SHA-256 verification remain available;
+- verified DMGs can still be opened from SVMM;
+- SVMM remains sandboxed and still does not automatically replace the installed app.
+
+Users upgrading specifically from v1.2.0 to v1.2.1 should use **Open Download Page** and download v1.2.1 through a browser once, because v1.2.0 itself still contains the old downloader.
+
+---
+
 ## 1.2.0 — 2026-09-12
 
 v1.2.0 是一次配置方案体验与自动分类能力更新，重点提升大量 Mod 环境下的视觉识别效率，并继续完善保守的自动分类策略。
