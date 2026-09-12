@@ -11,7 +11,7 @@
 
 <p align="center">
   <img alt="最低系统" src="https://img.shields.io/badge/最低系统-macOS%2015.0%2B-111111?logo=apple&logoColor=white">
-  <img alt="版本" src="https://img.shields.io/badge/版本-1.1.0-0969da">
+  <img alt="版本" src="https://img.shields.io/badge/版本-1.2.0-0969da">
   <img alt="架构" src="https://img.shields.io/badge/架构-Universal%202-555555">
   <img alt="语言" src="https://img.shields.io/badge/语言-简体中文%20%7C%20English-8250df">
   <img alt="数据" src="https://img.shields.io/badge/数据-本地优先-1a7f37">
@@ -141,7 +141,11 @@ SVMM 重点关注：
 
 分类负责“怎么整理”。系统默认分类方案提供只读参考，用户也可以创建自己的分类方案并调整 Mod 所属类目。
 
-v1.1.0 的分类页面新增搜索，同时扩充了 UI、服饰、家具、装饰物、地图、工具与环境等高置信度自动分类规则。无法可靠判断时，SVMM 仍会保留“未识别”，而不是强行分类。
+v1.1.0 的分类页面新增搜索，并扩充了 UI、服饰、家具、装饰物、地图、工具与环境等高置信度自动分类规则。
+
+v1.2.0 继续优化自动分类策略，增强建筑、地图、家具、装饰物与环境美化等类型的识别，并修正普通 Mod 因兼容性描述提及大型扩展而产生的误分类。大型扩展识别现在更严格地依赖 Mod 自身的名称、Unique ID 与文件夹等身份信息，而不是普通 Description 中的兼容性文字。
+
+无法可靠判断时，SVMM 仍会保留“未识别”，而不是强行分类。
 
 <p align="center">
   <img src="docs/images/zh-CN/categories.png" alt="分类" width="96%">
@@ -150,6 +154,12 @@ v1.1.0 的分类页面新增搜索，同时扩充了 UI、服饰、家具、装�
 ### 配置方案
 
 配置方案负责“这次实际启用哪些 Mods”。可以保存不同的启用/停用组合，用于不同存档、玩法或测试环境之间切换。
+
+从 v1.2.0 起，配置方案列表可以直接显示 SVMM 已经缓存到本地的 Nexus Mod 缩略图，帮助用户在大量 Mod 中快速辨认具体内容。将鼠标停留在缩略图上可以查看更大的预览。
+
+Toolbar 提供两种缩略图布局：可以让缩略图靠近 Mod 名称信息，也可以放在右侧启用 / 停用状态附近。当前选择通过本地界面偏好保存，并会在重新启动 SVMM 后继续使用。
+
+配置方案页面本身不会为了显示缩略图额外向 Nexus Mods 发起请求；这里只读取 SVMM 已经保存到本地的缩略图缓存。没有已有缓存的 Mod 仍可正常使用配置方案功能，只是不显示图片。
 
 <p align="center">
   <img src="docs/images/zh-CN/profiles.png" alt="配置方案" width="96%">
@@ -311,7 +321,7 @@ SVMM 当前通过 GitHub 独立分发。当前官方 GitHub 发行包**未使用
 
 ## 当前版本说明与已知问题
 
-SVMM 1.1.0 是在 1.0.0 基础上的功能与维护更新。详细变更见 [RELEASE-NOTES-v1.1.0.md](RELEASE-NOTES-v1.1.0.md) 与 [CHANGELOG.md](CHANGELOG.md)。当前已经确认的主要环境差异与边界包括：
+SVMM 1.2.0 是一次配置方案体验与自动分类能力更新。详细变更见 [RELEASE-NOTES-v1.2.0.md](RELEASE-NOTES-v1.2.0.md) 与 [CHANGELOG.md](CHANGELOG.md)。当前已经确认的主要环境差异与边界包括：
 
 - **macOS 15.0 分类页面响应速度较新系统慢**：在当前虚拟机测试中，首次进入分类以及部分行选择操作存在更明显延迟；功能可用，未发现因此导致的数据损坏。macOS 26.0 与 macOS 27.0 测试流畅。
 - **macOS beta / seed 的“帮助”菜单可能短暂变化**：系统可能动态注入 Feedback Assistant 项目，这是 macOS 行为，不影响 SVMM 核心数据。
@@ -331,6 +341,7 @@ SVMM 1.1.0 是在 1.0.0 基础上的功能与维护更新。详细变更见 [REL
 - [隐私政策](PRIVACY.md) · [Privacy Policy](PRIVACY.en.md)
 - [软件许可协议](SOFTWARE-LICENSE.md) · [Software License Agreement](SOFTWARE-LICENSE.en.md)
 - [更新记录](CHANGELOG.md)
+- [v1.2.0 发布说明](RELEASE-NOTES-v1.2.0.md)
 - [v1.1.0 发布说明](RELEASE-NOTES-v1.1.0.md)
 
 ## 隐私
