@@ -4,6 +4,22 @@
 
 This file tracks confirmed issues, compatibility differences, and environment-dependent behavior that are not fully resolved in the current public release.
 
+## v1.2.0 → v1.2.1 一次性升级说明 / One-time upgrade note
+
+v1.2.0 的应用内软件更新下载器会把 DMG 自动保存到 App Sandbox 自己的缓存目录。在部分 macOS 环境中，这会让下载文件带上表示“由沙盒 App 创建且缺少明确用户授权”的隔离状态，从而导致 DMG 中的 SVMM.app 无法执行，并且系统不一定提供“仍要打开”。
+
+该下载流程已在 **v1.2.1** 修复：点击“下载更新”后先由 macOS 原生保存面板让用户明确选择 DMG 保存位置，随后继续应用内下载、进度显示和 SHA-256 校验。SVMM 仍保持 App Sandbox。
+
+但是，正在运行的 v1.2.0 无法提前获得 v1.2.1 中的修复。因此 **从 v1.2.0 升级到 v1.2.1 这一次，请使用“打开下载页面”并通过浏览器下载 v1.2.1**。安装 v1.2.1 后，后续软件内下载使用新的流程。
+
+### English
+
+The v1.2.0 in-app software updater saved the DMG automatically inside the app's Sandbox cache. On some macOS environments, this can produce a quarantine state indicating executable content created by a sandboxed app without explicit user authorization, preventing the app inside the DMG from executing and not necessarily offering **Open Anyway**.
+
+This download path is fixed in **v1.2.1**. **Download Update** now begins with the native macOS Save panel so the user explicitly selects the DMG destination; in-app progress and SHA-256 verification are retained, and SVMM remains sandboxed.
+
+Because an already-running v1.2.0 cannot contain the v1.2.1 fix, use **Open Download Page** and download v1.2.1 through a browser for this one upgrade. Later in-app updates from v1.2.1 use the new workflow.
+
 ## 1. macOS 15.0 的“分类”页面响应速度低于 macOS 26 / 27
 
 SVMM 当前正式构建的最低部署目标为 **macOS 15.0**，macOS 15.0 可以正常启动并使用核心 Mod 管理功能。
