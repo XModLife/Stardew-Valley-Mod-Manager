@@ -11,7 +11,7 @@
 
 <p align="center">
   <img alt="Minimum macOS" src="https://img.shields.io/badge/Minimum%20macOS-15.0%2B-111111?logo=apple&logoColor=white">
-  <img alt="Version" src="https://img.shields.io/badge/Version-1.1.0-0969da">
+  <img alt="Version" src="https://img.shields.io/badge/Version-1.2.0-0969da">
   <img alt="Architecture" src="https://img.shields.io/badge/Architecture-Universal%202-555555">
   <img alt="Languages" src="https://img.shields.io/badge/Languages-Simplified%20Chinese%20%7C%20English-8250df">
   <img alt="Data" src="https://img.shields.io/badge/Data-Local--first-1a7f37">
@@ -140,7 +140,11 @@ Unlike display-name notes or user update-source overrides, the Manifest Editor m
 
 Categories answer “how should these Mods be organized?” The system default classification is a read-only reference, while user schemes can contain editable assignments and categories.
 
-v1.1.0 adds search to the Categories page and expands high-confidence classification rules for UI, clothing, furniture, decorations, maps, tools, environment, and related patterns. When SVMM cannot classify a Mod reliably, it continues to leave it unrecognized rather than forcing a category.
+v1.1.0 added search to the Categories page and expanded high-confidence classification rules for UI, clothing, furniture, decorations, maps, tools, environment, and related patterns.
+
+v1.2.0 further refines conservative automatic classification, with improved recognition for buildings, maps, furniture, decorations, and environmental visual Mods. It also prevents ordinary compatibility descriptions that mention large expansions from incorrectly classifying a Mod as an expansion. Expansion detection now relies more strictly on the Mod's own identity fields, such as its name, Unique ID, and folder name.
+
+When SVMM cannot classify a Mod reliably, it continues to leave it unrecognized rather than forcing a category.
 
 <p align="center">
   <img src="docs/images/en/categories.png" alt="Categories" width="96%">
@@ -149,6 +153,12 @@ v1.1.0 adds search to the Categories page and expands high-confidence classifica
 ### Profiles
 
 Profiles answer “which Mods should actually be enabled for this setup?” Save and apply enabled/disabled combinations for different saves, play styles, or test environments.
+
+Starting with v1.2.0, Profiles can display Nexus Mod thumbnails that SVMM has already cached locally, making Mods easier to recognize while building or reviewing a profile. Hovering a thumbnail shows a larger preview.
+
+The toolbar provides two thumbnail-placement layouts: thumbnails can appear near the Mod information or near the enabled/disabled runtime status. The selected layout is stored as a local interface preference and restored on future launches.
+
+The Profiles page does not make additional Nexus Mods requests solely to display these thumbnails; it only consumes thumbnail data that SVMM has already cached locally. Mods without an existing cached thumbnail remain fully usable and simply show no image.
 
 <p align="center">
   <img src="docs/images/en/profiles.png" alt="Profiles" width="96%">
@@ -308,7 +318,7 @@ Download only from this repository's official Release page and verify the SHA-25
 
 ## Current Release Notes & Known Issues
 
-SVMM 1.1.0 is a feature and maintenance update over 1.0.0. See [RELEASE-NOTES-v1.1.0.md](RELEASE-NOTES-v1.1.0.md) and [CHANGELOG.md](CHANGELOG.md) for the full change summary. Confirmed environment-dependent behavior and current boundaries include:
+SVMM 1.2.0 is a Profiles-experience and automatic-classification update. See [RELEASE-NOTES-v1.2.0.md](RELEASE-NOTES-v1.2.0.md) and [CHANGELOG.md](CHANGELOG.md) for the full change summary. Confirmed environment-dependent behavior and current boundaries include:
 
 - **Categories is less responsive on macOS 15.0 than on newer systems** in the current VM test environment. First entry and some selection interactions can be slower, while core functionality remains usable and no related data-integrity issue has been identified. macOS 26.0 and 27.0 tests are smooth.
 - **The Help menu may briefly change on macOS beta/seed builds** when macOS injects a Feedback Assistant item. This is system behavior and does not affect SVMM management data.
@@ -328,6 +338,7 @@ See [KNOWN-ISSUES.md](KNOWN-ISSUES.md) for the maintained list.
 - [隐私政策](PRIVACY.md) · [Privacy Policy](PRIVACY.en.md)
 - [软件许可协议](SOFTWARE-LICENSE.md) · [Software License Agreement](SOFTWARE-LICENSE.en.md)
 - [Changelog](CHANGELOG.md)
+- [v1.2.0 Release Notes](RELEASE-NOTES-v1.2.0.md)
 - [v1.1.0 Release Notes](RELEASE-NOTES-v1.1.0.md)
 
 ## Privacy

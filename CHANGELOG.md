@@ -1,5 +1,58 @@
 # 更新记录 / Changelog
 
+## 1.2.0 — 2026-09-12
+
+v1.2.0 是一次配置方案体验与自动分类能力更新，重点提升大量 Mod 环境下的视觉识别效率，并继续完善保守的自动分类策略。
+
+### 配置方案与缩略图
+
+- 配置方案 Mod 列表新增缩略图显示；
+- 只读取 SVMM 已有的本地 Nexus 缩略图缓存，不会因为进入配置方案页面额外请求 Nexus Mods；
+- 根据当前 Mod 行内容自适应缩略图显示高度；
+- 鼠标悬停缩略图时可查看更大的预览；
+- 新增两种缩略图位置：
+  - 靠近 Mod 信息；
+  - 靠近启用 / 停用状态；
+- Toolbar 提供直接可见的分段切换控件，可以单击切换两种布局；
+- 两种布局使用对应的左 / 右对齐图标；
+- 缩略图位置偏好通过本地设置持久保存；
+- 缩略图只作为视觉识别辅助，不改变配置方案、Mod 状态或 Nexus 更新逻辑。
+
+### 自动分类
+
+- 继续扩充保守自动分类规则；
+- 改进建筑类 Content Pack 识别；
+- 改进地图与路径类 Mod 识别；
+- 补充部分已确认的家具、装饰物与环境美化分类；
+- 修复普通 Mod 因 Description 中出现 Stardew Valley Expanded、Ridgeside Village、East Scarp 等兼容性描述，而被错误归入“大型扩展”的问题；
+- 大型扩展识别现在更严格地依赖 Mod 自身身份信息，而不是普通 Description 中的兼容性文字；
+- 无法可靠判断的 Mod 继续保留“未识别”。
+
+### 发布信息
+
+- 软件版本更新为 **1.2.0（Build 3）**；
+- 最低系统继续为 **macOS 15.0**；
+- 正式构建继续提供 **Universal 2（arm64 + x86_64）**；
+- 隐私政策继续使用 **1.1 / 2026-09-11**；
+- 软件许可协议继续使用 **1.0 / 2026-09-10**。
+
+### English Summary
+
+Version 1.2.0 adds:
+
+- locally cached Mod thumbnails to Profiles;
+- larger thumbnail previews on hover;
+- two user-selectable thumbnail placement layouts;
+- a one-click segmented toolbar control for switching layouts;
+- persistent local storage of the selected thumbnail placement;
+- no additional Nexus Mods requests from Profiles solely for thumbnail display;
+- refined conservative classification for buildings, maps, furniture, decorations, and environmental Mods;
+- a fix preventing compatibility descriptions from incorrectly classifying ordinary Mods as large expansions.
+
+The minimum supported system remains macOS 15.0, and the official build remains Universal 2 (`arm64 + x86_64`).
+
+---
+
 ## 1.1.0 — 2026-09-11
 
 v1.1.0 是在 1.0.0 基础上的功能与维护更新，重点补充 Manifest 维护、Mod 管理体验、自动分类以及 SVMM 自身更新流程。

@@ -2,7 +2,7 @@
 
 # Stardew Valley Mod Manager User Manual
 
-Applies to Stardew Valley Mod Manager 1.1.0 and later versions until this manual is updated.
+Applies to Stardew Valley Mod Manager 1.2.0 and later versions until this manual is updated.
 
 Stardew Valley Mod Manager (SVMM) is a local Mod-management application for macOS. It manages the Stardew Valley Mods you already use rather than creating a second parallel Mod environment. Most management data remains on your Mac.
 
@@ -115,7 +115,11 @@ The Manifest Editor modifies the Mod's actual `manifest.json`. It is separate fr
 
 ### Categories
 
-Categories answer “how should these Mods be organized?” The system default scheme is a read-only reference; user schemes can add categories and manual assignments. v1.1.0 adds search to the Categories page and expands conservative automatic classification; Mods that cannot be classified reliably remain unrecognized.
+Categories answer “how should these Mods be organized?” The system default scheme is a read-only reference; user schemes can add categories and manual assignments.
+
+Starting with v1.1.0, Categories supports search. v1.2.0 further refines conservative automatic classification, improves recognition for buildings, maps, furniture, decorations, and environmental visual Mods, and fixes false expansion classifications caused by compatibility descriptions that merely mention large expansions. Expansion detection now relies more strictly on the Mod's own identity information.
+
+Mods that cannot be classified reliably remain unrecognized.
 
 <p align="center">
   <img src="docs/images/en/categories.png" alt="Categories" width="96%">
@@ -124,6 +128,17 @@ Categories answer “how should these Mods be organized?” The system default s
 ### Profiles
 
 Profiles answer “which Mods should actually be enabled for this setup?” They store and apply enabled/disabled combinations.
+
+Starting with v1.2.0, Profile rows can display Nexus thumbnails that SVMM has already cached locally, making Mods easier to identify when names alone are not enough.
+
+- the compact thumbnail provides quick visual identification in the list;
+- hovering a thumbnail shows a larger preview;
+- the toolbar directly switches between two thumbnail positions;
+- **Near Mod Info** places the thumbnail after the name, display-name note, and author information;
+- **Near Enable Status** places the thumbnail near the enabled/disabled runtime state on the right;
+- the selected layout is stored as a local interface preference and restored after restarting SVMM;
+- Profiles only reads existing local thumbnail cache data and does not make additional Nexus Mods requests solely to display these images;
+- Mods without an existing cached thumbnail remain fully usable and simply show no image.
 
 <p align="center">
   <img src="docs/images/en/profiles.png" alt="Profiles" width="96%">

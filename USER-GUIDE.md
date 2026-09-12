@@ -2,7 +2,7 @@
 
 # Stardew Valley Mod Manager 使用手册
 
-适用版本：Stardew Valley Mod Manager 1.1.0 及后续版本，直至本手册更新。
+适用版本：Stardew Valley Mod Manager 1.2.0 及后续版本，直至本手册更新。
 
 Stardew Valley Mod Manager（SVMM）是一款 macOS 本地 Mod 管理工具。它读取并管理您现有的 Stardew Valley Mods，不为游戏创建另一套平行 Mod 环境。多数管理数据保存在本机。
 
@@ -119,7 +119,11 @@ Manifest Editor 修改的是 Mod 自己的真实 `manifest.json`。它与“名�
 
 ### 分类
 
-分类回答“怎么整理”。系统默认分类可作为只读参考；用户方案可以新增类目并调整 Mod 分类。v1.1.0 的分类页面支持搜索，自动分类规则也进行了扩充；无法可靠判断的 Mod 仍会保持“未识别”。
+分类回答“怎么整理”。系统默认分类可作为只读参考；用户方案可以新增类目并调整 Mod 分类。
+
+v1.1.0 起分类页面支持搜索；v1.2.0 继续完善保守自动分类，增强建筑、地图、家具、装饰物与环境美化等类型的识别，并修复普通 Mod 因兼容性描述提及大型扩展而被错误归类的问题。大型扩展识别现在更严格地依赖 Mod 自身身份信息。
+
+无法可靠判断的 Mod 仍会保持“未识别”。
 
 <p align="center">
   <img src="docs/images/zh-CN/categories.png" alt="分类" width="96%">
@@ -128,6 +132,17 @@ Manifest Editor 修改的是 Mod 自己的真实 `manifest.json`。它与“名�
 ### 配置方案
 
 配置方案回答“这次实际使用哪些 Mods”。它保存并应用启用/停用组合。
+
+从 v1.2.0 起，配置方案中的 Mod 可以显示 SVMM 已经缓存到本地的 Nexus 缩略图，以便在只看名称不容易辨认 Mod 时快速确认内容。
+
+- 小缩略图用于列表中的快速识别；
+- 将鼠标悬停在缩略图上，可以查看更大的图片预览；
+- Toolbar 中可以直接切换两种缩略图位置；
+- “靠近 Mod 信息”会把缩略图放在名称、名称备注和作者信息之后；
+- “靠近启用状态”会把缩略图放在右侧已启用 / 已停用状态附近；
+- 当前选择会作为本地界面偏好保存，重新启动 SVMM 后继续使用；
+- 配置方案页面只读取已有本地缩略图缓存，不会为了显示这些图片额外向 Nexus Mods 发起请求；
+- 没有已有缩略图缓存的 Mod 可以正常使用配置方案功能，只是不显示图片。
 
 <p align="center">
   <img src="docs/images/zh-CN/profiles.png" alt="配置方案" width="96%">
